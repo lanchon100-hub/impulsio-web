@@ -1,0 +1,959 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Impulsio — Tu copiloto laboral con IA</title>
+<meta name="description" content="Impulsio potencia tu carrera con IA: CV optimizado, postulaciones automatizadas y entrenamiento para entrevistas. Para quienes buscan y para quienes quieren más.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,600;0,9..144,700;1,9..144,300;1,9..144,400;1,9..144,600&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,300&display=swap" rel="stylesheet">
+<style>
+:root {
+  --night:   #0A1628;
+  --navy:    #0D1F3C;
+  --navy2:   #112248;
+  --azure:   #2563EB;
+  --azure-d: #1D51C8;
+  --sky:     #60A5FA;
+  --ice:     #EFF6FF;
+  --warm:    #F97316;
+  --warm-d:  #EA6B0B;
+  --gold:    #FBBF24;
+  --mint:    #10B981;
+  --cream:   #FDFAF5;
+  --sand:    #F5EFE4;
+  --text:    #0F172A;
+  --text2:   #334155;
+  --text3:   #64748B;
+  --border:  rgba(0,0,0,0.07);
+  --r-sm:6px; --r-md:14px; --r-lg:22px; --r-xl:32px; --r-pill:999px;
+}
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{font-family:'DM Sans',sans-serif;background:#fff;color:var(--text);line-height:1.6;overflow-x:hidden;}
+::-webkit-scrollbar{width:5px;}
+::-webkit-scrollbar-thumb{background:rgba(0,0,0,0.15);border-radius:3px;}
+
+/* ─ UTIL ─ */
+.serif{font-family:'Fraunces',serif;}
+.italic{font-style:italic;}
+.eyebrow{font-size:11px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--azure);margin-bottom:12px;}
+.eyebrow.light{color:var(--sky);}
+.h2{font-family:'Fraunces',serif;font-weight:600;letter-spacing:-.025em;line-height:1.12;font-size:clamp(30px,3.8vw,46px);color:var(--text);margin-bottom:14px;}
+.h2.light{color:#fff;}
+.lead{font-size:17px;color:var(--text3);line-height:1.75;max-width:540px;margin-bottom:52px;}
+.lead.light{color:rgba(255,255,255,.45);}
+.section{padding:96px 40px;}
+.inner{max-width:1020px;margin:0 auto;}
+
+/* ─ NAV ─ */
+nav{position:fixed;top:0;left:0;right:0;z-index:300;
+  display:flex;align-items:center;justify-content:space-between;
+  padding:0 40px;height:62px;
+  background:rgba(10,22,40,.93);backdrop-filter:blur(18px);
+  border-bottom:1px solid rgba(255,255,255,.05);}
+.nav-brand{display:flex;align-items:center;gap:10px;text-decoration:none;}
+.nav-icon{width:32px;height:32px;border-radius:9px;background:var(--azure);display:flex;align-items:center;justify-content:center;flex-shrink:0;}
+.nav-name{font-family:'Fraunces',serif;font-size:19px;font-weight:600;color:#fff;}
+.nav-links{display:flex;gap:2px;}
+.nav-links a{font-size:13.5px;color:rgba(255,255,255,.45);text-decoration:none;padding:6px 13px;border-radius:var(--r-pill);transition:color .2s,background .2s;}
+.nav-links a:hover{color:#fff;background:rgba(255,255,255,.06);}
+.nav-end{display:flex;gap:8px;align-items:center;}
+.btn-ghost-sm{font-size:13.5px;color:rgba(255,255,255,.5);text-decoration:none;padding:7px 15px;border-radius:var(--r-pill);border:1px solid rgba(255,255,255,.12);transition:all .2s;}
+.btn-ghost-sm:hover{color:#fff;border-color:rgba(255,255,255,.25);}
+.btn-cta-sm{font-size:13.5px;font-weight:500;color:#fff;text-decoration:none;padding:7px 18px;border-radius:var(--r-pill);background:var(--warm);transition:background .2s;}
+.btn-cta-sm:hover{background:var(--warm-d);}
+
+/* ─ HERO ─ */
+.hero{min-height:100vh;background:var(--night);display:flex;flex-direction:column;padding-top:62px;position:relative;overflow:hidden;}
+.hero-orb1{position:absolute;width:680px;height:680px;border-radius:50%;background:var(--azure);opacity:.055;top:-220px;right:-180px;pointer-events:none;}
+.hero-orb2{position:absolute;width:420px;height:420px;border-radius:50%;background:var(--warm);opacity:.04;bottom:-120px;left:-80px;pointer-events:none;}
+.hero-grid{position:absolute;inset:0;pointer-events:none;
+  background-image:linear-gradient(rgba(255,255,255,.022) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.022) 1px,transparent 1px);
+  background-size:52px 52px;
+  mask-image:radial-gradient(ellipse 75% 65% at 50% 40%,black 0%,transparent 100%);}
+
+.hero-body{flex:1;display:flex;align-items:center;justify-content:center;text-align:center;padding:72px 40px 48px;position:relative;z-index:1;}
+.hero-inner{max-width:780px;}
+
+/* Audience toggle */
+.aud-toggle{display:inline-flex;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.1);border-radius:var(--r-pill);padding:4px;gap:2px;margin-bottom:32px;cursor:pointer;}
+.aud-btn{font-size:13px;font-weight:500;padding:7px 18px;border-radius:var(--r-pill);color:rgba(255,255,255,.45);transition:all .25s;user-select:none;}
+.aud-btn.active{background:var(--azure);color:#fff;}
+
+.hero-badge{display:inline-flex;align-items:center;gap:8px;background:rgba(37,99,235,.15);border:1px solid rgba(37,99,235,.3);color:var(--sky);font-size:12.5px;font-weight:500;padding:5px 15px;border-radius:var(--r-pill);margin-bottom:26px;animation:fu .7s ease both;}
+.badge-dot{width:6px;height:6px;border-radius:50%;background:var(--sky);animation:pulse 2s ease infinite;}
+@keyframes pulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.45;transform:scale(1.5)}}
+
+.hero-h1{font-family:'Fraunces',serif;font-weight:600;letter-spacing:-.035em;line-height:1.06;font-size:clamp(46px,7vw,82px);color:#fff;margin-bottom:22px;}
+.hero-h1 .accent{color:var(--sky);}
+.hero-h1 .dim{color:rgba(255,255,255,.2);}
+
+.hero-sub{font-size:clamp(15px,1.8vw,18px);color:rgba(255,255,255,.48);line-height:1.75;max-width:580px;margin:0 auto 36px;}
+.hero-sub strong{color:rgba(255,255,255,.78);font-weight:500;}
+
+/* Dual CTA */
+.hero-ctas{display:flex;gap:12px;justify-content:center;flex-wrap:wrap;margin-bottom:40px;}
+.btn-primary{display:inline-flex;align-items:center;gap:9px;background:var(--warm);color:#fff;text-decoration:none;font-size:15.5px;font-weight:600;padding:15px 30px;border-radius:var(--r-pill);transition:background .2s,transform .15s;}
+.btn-primary:hover{background:var(--warm-d);transform:translateY(-1px);}
+.btn-outline{display:inline-flex;align-items:center;gap:9px;color:rgba(255,255,255,.55);text-decoration:none;font-size:15px;padding:15px 22px;border-radius:var(--r-pill);border:1px solid rgba(255,255,255,.13);transition:all .2s;}
+.btn-outline:hover{color:#fff;border-color:rgba(255,255,255,.28);background:rgba(255,255,255,.04);}
+
+.hero-trust{display:flex;gap:28px;justify-content:center;flex-wrap:wrap;}
+.trust-item{display:flex;align-items:center;gap:7px;font-size:12.5px;color:rgba(255,255,255,.32);}
+.trust-sep{color:rgba(255,255,255,.1);}
+
+/* Dashboard mockup */
+.hero-mockup{position:relative;z-index:1;padding:0 40px 80px;}
+.mockup-shell{max-width:920px;margin:0 auto;background:var(--navy2);border-radius:var(--r-xl);border:1px solid rgba(255,255,255,.07);overflow:hidden;}
+.mockup-bar{background:rgba(0,0,0,.2);border-bottom:1px solid rgba(255,255,255,.06);padding:11px 18px;display:flex;align-items:center;gap:7px;}
+.m-dot{width:9px;height:9px;border-radius:50%;}
+.m-url{font-size:11.5px;color:rgba(255,255,255,.2);margin-left:8px;}
+.mockup-content{display:grid;grid-template-columns:200px 1fr;gap:0;}
+.m-sidebar{border-right:1px solid rgba(255,255,255,.05);padding:18px 12px;display:flex;flex-direction:column;gap:4px;}
+.m-nav-item{padding:8px 12px;border-radius:10px;font-size:12.5px;color:rgba(255,255,255,.38);display:flex;align-items:center;gap:9px;}
+.m-nav-item.on{background:rgba(37,99,235,.18);color:var(--sky);}
+.m-main{padding:22px 24px;display:flex;flex-direction:column;gap:14px;}
+.m-greeting{font-size:13px;color:rgba(255,255,255,.6);}
+.m-greeting strong{font-family:'Fraunces',serif;font-size:16px;color:#fff;display:block;margin-bottom:3px;}
+.m-cards{display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px;}
+.m-card{background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.07);border-radius:12px;padding:14px 16px;}
+.m-card.blue{background:rgba(37,99,235,.13);border-color:rgba(37,99,235,.2);}
+.m-card.green{background:rgba(16,185,129,.1);border-color:rgba(16,185,129,.18);}
+.m-card.warm{background:rgba(249,115,22,.1);border-color:rgba(249,115,22,.18);}
+.mc-label{font-size:10.5px;color:rgba(255,255,255,.35);margin-bottom:6px;}
+.mc-val{font-family:'Fraunces',serif;font-size:28px;font-weight:600;color:#fff;line-height:1;}
+.mc-sub{font-size:11px;margin-top:4px;}
+.mc-sub.up{color:var(--mint);}
+.mc-sub.amber{color:var(--gold);}
+.mc-sub.sky{color:var(--sky);}
+.m-jobs{display:grid;grid-template-columns:1fr 1fr;gap:8px;}
+.m-job{background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.06);border-radius:10px;padding:12px 14px;}
+.mj-co{font-size:10.5px;color:rgba(255,255,255,.28);margin-bottom:3px;}
+.mj-title{font-size:12.5px;font-weight:500;color:#fff;margin-bottom:6px;}
+.mj-match{display:inline-flex;align-items:center;gap:4px;background:rgba(16,185,129,.15);color:#34D399;font-size:10px;font-weight:600;padding:2px 8px;border-radius:var(--r-pill);}
+
+@keyframes fu{from{opacity:0;transform:translateY(18px)}to{opacity:1;transform:translateY(0)}}
+.a1{animation:fu .65s .05s ease both;}
+.a2{animation:fu .65s .12s ease both;}
+.a3{animation:fu .65s .18s ease both;}
+.a4{animation:fu .65s .25s ease both;}
+.a5{animation:fu .65s .35s ease both;}
+
+/* ─ PORTALS BAR ─ */
+.portals{background:var(--cream);border-top:1px solid var(--border);border-bottom:1px solid var(--border);padding:22px 40px;}
+.portals-inner{max-width:960px;margin:0 auto;display:flex;align-items:center;justify-content:center;gap:32px;flex-wrap:wrap;}
+.portals-label{font-size:12px;color:var(--text3);}
+.portal-chip{font-size:13px;font-weight:500;color:#94A3B8;padding:5px 14px;border-radius:var(--r-pill);border:1px solid var(--border);background:#fff;letter-spacing:.01em;}
+
+/* ─ AUDIENCE SPLIT ─ */
+.audience{background:#fff;}
+.aud-split{display:grid;grid-template-columns:1fr 1fr;gap:20px;}
+.aud-card{border-radius:var(--r-xl);padding:44px 40px;border:1px solid var(--border);position:relative;overflow:hidden;transition:border-color .2s,transform .2s;}
+.aud-card:hover{transform:translateY(-3px);}
+.aud-card.seeker{background:var(--night);}
+.aud-card.open{background:var(--cream);}
+.aud-card::before{content:'';position:absolute;width:300px;height:300px;border-radius:50%;top:-120px;right:-100px;pointer-events:none;}
+.aud-card.seeker::before{background:var(--azure);opacity:.08;}
+.aud-card.open::before{background:var(--warm);opacity:.07;}
+.aud-tag{display:inline-block;font-size:10.5px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;padding:4px 12px;border-radius:var(--r-pill);margin-bottom:20px;}
+.aud-tag.seeker{background:rgba(37,99,235,.2);color:var(--sky);}
+.aud-tag.open{background:rgba(249,115,22,.12);color:var(--warm);}
+.aud-h3{font-family:'Fraunces',serif;font-size:26px;font-weight:600;line-height:1.2;margin-bottom:12px;}
+.aud-h3.light{color:#fff;}
+.aud-h3.dark{color:var(--text);}
+.aud-p{font-size:15px;line-height:1.7;margin-bottom:24px;}
+.aud-p.light{color:rgba(255,255,255,.5);}
+.aud-p.dark{color:var(--text3);}
+.aud-list{list-style:none;display:flex;flex-direction:column;gap:10px;margin-bottom:32px;}
+.aud-list li{display:flex;gap:10px;align-items:flex-start;font-size:14px;}
+.aud-list li.light{color:rgba(255,255,255,.65);}
+.aud-list li.dark{color:var(--text2);}
+.aud-check{width:18px;height:18px;border-radius:50%;flex-shrink:0;margin-top:1px;display:flex;align-items:center;justify-content:center;}
+.aud-check.blue{background:rgba(37,99,235,.25);}
+.aud-check.warm{background:rgba(249,115,22,.2);}
+.btn-aud{display:inline-flex;align-items:center;gap:8px;font-size:14px;font-weight:600;padding:12px 24px;border-radius:var(--r-pill);text-decoration:none;transition:all .2s;}
+.btn-aud.blue{background:var(--azure);color:#fff;}
+.btn-aud.blue:hover{background:var(--azure-d);}
+.btn-aud.warm{background:var(--warm);color:#fff;}
+.btn-aud.warm:hover{background:var(--warm-d);}
+
+/* ─ HOW IT WORKS ─ */
+.how{background:var(--cream);}
+.steps{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;}
+.step{border:1px solid var(--border);border-radius:var(--r-lg);padding:32px 28px;background:#fff;position:relative;overflow:hidden;transition:border-color .2s,transform .2s;}
+.step:hover{border-color:rgba(37,99,235,.22);transform:translateY(-3px);}
+.step-n{font-family:'Fraunces',serif;font-size:72px;font-weight:700;color:rgba(0,0,0,.035);line-height:1;position:absolute;top:12px;right:18px;}
+.step-icon{width:46px;height:46px;border-radius:13px;background:var(--ice);display:flex;align-items:center;justify-content:center;margin-bottom:18px;}
+.step-title{font-family:'Fraunces',serif;font-size:20px;font-weight:600;color:var(--text);margin-bottom:9px;}
+.step-desc{font-size:14.5px;color:var(--text3);line-height:1.7;}
+
+/* ─ FEATURES ─ */
+.features{background:#fff;}
+.feat-grid{display:grid;grid-template-columns:1fr 1fr;gap:18px;}
+.feat-wide{grid-column:1/-1;}
+.f-card{border:1px solid var(--border);border-radius:var(--r-lg);padding:32px;background:#fff;transition:border-color .2s,transform .2s;}
+.f-card:hover{border-color:rgba(37,99,235,.18);transform:translateY(-2px);}
+.f-card.hero-feat{background:var(--night);border-color:var(--navy);display:grid;grid-template-columns:1fr 1fr;gap:32px;align-items:center;}
+.f-icon{width:44px;height:44px;border-radius:12px;background:var(--ice);display:flex;align-items:center;justify-content:center;margin-bottom:18px;}
+.f-icon.dark{background:rgba(37,99,235,.18);}
+.f-title{font-family:'Fraunces',serif;font-size:20px;font-weight:600;margin-bottom:10px;color:var(--text);}
+.f-title.light{color:#fff;}
+.f-desc{font-size:14.5px;line-height:1.7;color:var(--text3);}
+.f-desc.light{color:rgba(255,255,255,.5);}
+.f-tags{display:flex;gap:7px;flex-wrap:wrap;margin-top:16px;}
+.tag{font-size:11px;font-weight:600;padding:3px 11px;border-radius:var(--r-pill);}
+.tag.blue{background:var(--ice);color:var(--azure);}
+.tag.ghost{background:rgba(255,255,255,.08);color:rgba(255,255,255,.45);}
+.ats-visual{background:rgba(37,99,235,.1);border:1px solid rgba(37,99,235,.15);border-radius:var(--r-lg);padding:22px;display:flex;flex-direction:column;gap:11px;}
+.av-row{display:flex;align-items:center;gap:10px;padding:10px 13px;background:rgba(255,255,255,.04);border-radius:8px;}
+.av-label{font-size:12px;color:rgba(255,255,255,.5);flex:1;}
+.av-bar-bg{width:100px;height:4px;background:rgba(255,255,255,.08);border-radius:2px;flex-shrink:0;}
+.av-bar-fill{height:4px;border-radius:2px;}
+.av-val{font-size:12.5px;font-weight:500;color:#fff;min-width:32px;text-align:right;}
+
+/* ─ SOCIAL PROOF ─ */
+.proof{background:var(--cream);}
+.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-bottom:56px;}
+.stat{background:#fff;border:1px solid var(--border);border-radius:var(--r-lg);padding:26px 20px;text-align:center;}
+.stat-val{font-family:'Fraunces',serif;font-size:44px;font-weight:600;color:var(--azure);line-height:1;margin-bottom:5px;}
+.stat-label{font-size:13.5px;color:var(--text3);line-height:1.5;}
+.testimonials{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;}
+.testi{background:#fff;border:1px solid var(--border);border-radius:var(--r-lg);padding:26px;transition:border-color .2s;}
+.testi:hover{border-color:rgba(37,99,235,.18);}
+.testi-stars{color:var(--gold);font-size:13px;letter-spacing:1.5px;margin-bottom:13px;}
+.testi-tag{display:inline-block;font-size:10px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;padding:3px 9px;border-radius:var(--r-pill);margin-bottom:12px;}
+.testi-tag.seeker{background:rgba(37,99,235,.08);color:var(--azure);}
+.testi-tag.open{background:rgba(249,115,22,.08);color:var(--warm);}
+.testi-text{font-size:14.5px;color:var(--text2);line-height:1.75;margin-bottom:20px;font-style:italic;}
+.testi-author{display:flex;align-items:center;gap:11px;}
+.testi-avatar{width:36px;height:36px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:600;color:#fff;flex-shrink:0;}
+.testi-name{font-size:13.5px;font-weight:500;color:var(--text);}
+.testi-role{font-size:12px;color:var(--text3);}
+
+/* ─ PRICING ─ */
+.pricing{background:var(--night);}
+.plans{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;}
+.plan{border-radius:var(--r-xl);padding:36px 30px;border:1px solid rgba(255,255,255,.08);background:rgba(255,255,255,.04);display:flex;flex-direction:column;transition:border-color .2s;}
+.plan:hover{border-color:rgba(255,255,255,.16);}
+.plan-name{font-size:11.5px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,.38);margin-bottom:14px;}
+.plan-icon{width:40px;height:40px;border-radius:11px;display:flex;align-items:center;justify-content:center;margin-bottom:20px;}
+.plan-icon.basic{background:rgba(255,255,255,.07);}
+.plan-icon.pro{background:rgba(37,99,235,.25);}
+.plan-icon.elite{background:rgba(251,191,36,.12);}
+.plan-price-row{margin-bottom:6px;}
+.plan-price-num{font-family:'Fraunces',serif;font-size:46px;font-weight:600;color:#fff;line-height:1;}
+.plan-price-curr{font-size:20px;font-weight:300;color:rgba(255,255,255,.5);vertical-align:super;}
+.plan-price-period{font-size:13px;color:rgba(255,255,255,.35);}
+.plan-desc{font-size:13.5px;color:rgba(255,255,255,.4);line-height:1.65;margin-bottom:26px;}
+.plan-divider{height:1px;background:rgba(255,255,255,.07);margin-bottom:22px;}
+.plan-feats{list-style:none;display:flex;flex-direction:column;gap:11px;flex:1;margin-bottom:28px;}
+.plan-feats li{display:flex;gap:9px;font-size:13.5px;color:rgba(255,255,255,.65);align-items:flex-start;line-height:1.5;}
+.pf-check{width:17px;height:17px;border-radius:50%;background:rgba(255,255,255,.1);flex-shrink:0;margin-top:1px;display:flex;align-items:center;justify-content:center;}
+.pf-check.blue{background:rgba(37,99,235,.25);}
+.pf-check.gold{background:rgba(251,191,36,.2);}
+.pf-x{width:17px;height:17px;border-radius:50%;background:rgba(255,255,255,.04);flex-shrink:0;margin-top:1px;display:flex;align-items:center;justify-content:center;opacity:.35;}
+.btn-plan{display:block;text-align:center;text-decoration:none;font-size:14.5px;font-weight:600;padding:13px 22px;border-radius:var(--r-pill);transition:all .2s;}
+.btn-plan.ghost{color:rgba(255,255,255,.65);border:1px solid rgba(255,255,255,.14);}
+.btn-plan.ghost:hover{background:rgba(255,255,255,.06);color:#fff;}
+.btn-plan.blue{background:var(--azure);color:#fff;}
+.btn-plan.blue:hover{background:var(--azure-d);transform:translateY(-1px);}
+.btn-plan.gold{background:var(--gold);color:#78350F;}
+.btn-plan.gold:hover{background:#F59E0B;transform:translateY(-1px);}
+.plan-note{font-size:11.5px;color:rgba(255,255,255,.25);text-align:center;margin-top:9px;}
+
+/* Plan comparison badge */
+.plan-badge{display:inline-flex;align-items:center;gap:6px;font-size:10.5px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;padding:3px 11px;border-radius:var(--r-pill);margin-bottom:14px;}
+.plan-badge.basic{background:rgba(255,255,255,.07);color:rgba(255,255,255,.4);}
+.plan-badge.pro{background:rgba(37,99,235,.2);color:var(--sky);}
+.plan-badge.elite{background:rgba(251,191,36,.15);color:var(--gold);}
+
+/* ─ FAQ ─ */
+.faq{background:var(--cream);}
+.faq-list{max-width:680px;display:flex;flex-direction:column;}
+.faq-item{border-bottom:1px solid var(--border);padding:22px 0;cursor:pointer;}
+.faq-q{display:flex;justify-content:space-between;align-items:center;gap:16px;font-size:15.5px;font-weight:500;color:var(--text);}
+.faq-toggle{width:24px;height:24px;border-radius:50%;border:1px solid var(--border);flex-shrink:0;display:flex;align-items:center;justify-content:center;font-size:16px;color:var(--text3);transition:transform .25s;}
+.faq-a{font-size:14.5px;color:var(--text3);line-height:1.75;max-height:0;overflow:hidden;transition:max-height .3s ease,padding .3s;}
+.faq-item.open .faq-a{max-height:220px;padding-top:13px;}
+.faq-item.open .faq-toggle{transform:rotate(45deg);}
+
+/* ─ CTA BAND ─ */
+.cta-band{background:var(--night);text-align:center;padding:110px 40px;position:relative;overflow:hidden;}
+.cta-orb{position:absolute;width:560px;height:560px;border-radius:50%;background:var(--azure);opacity:.065;top:50%;left:50%;transform:translate(-50%,-50%);pointer-events:none;}
+.cta-inner{position:relative;z-index:1;}
+.cta-h2{font-family:'Fraunces',serif;font-weight:600;letter-spacing:-.03em;font-size:clamp(34px,5vw,58px);color:#fff;margin-bottom:14px;}
+.cta-h2 em{font-style:italic;color:var(--sky);}
+.cta-sub{font-size:17px;color:rgba(255,255,255,.42);max-width:480px;margin:0 auto 38px;line-height:1.7;}
+.cta-actions{display:flex;gap:12px;justify-content:center;flex-wrap:wrap;}
+.btn-cta-lg{display:inline-flex;align-items:center;gap:9px;background:var(--warm);color:#fff;text-decoration:none;font-size:16px;font-weight:600;padding:17px 34px;border-radius:var(--r-pill);transition:background .2s,transform .15s;}
+.btn-cta-lg:hover{background:var(--warm-d);transform:translateY(-2px);}
+.btn-outline-lg{display:inline-flex;align-items:center;gap:9px;color:rgba(255,255,255,.48);text-decoration:none;font-size:15px;padding:17px 26px;border-radius:var(--r-pill);border:1px solid rgba(255,255,255,.13);transition:all .2s;}
+.btn-outline-lg:hover{color:#fff;border-color:rgba(255,255,255,.27);}
+.cta-note{font-size:12.5px;color:rgba(255,255,255,.22);margin-top:18px;}
+
+/* ─ FOOTER ─ */
+footer{background:#060E1A;padding:56px 40px 32px;}
+.footer-inner{max-width:1020px;margin:0 auto;}
+.footer-top{display:grid;grid-template-columns:230px 1fr;gap:48px;margin-bottom:44px;}
+.ft-brand{font-family:'Fraunces',serif;font-size:20px;font-weight:600;color:#fff;display:flex;align-items:center;gap:9px;margin-bottom:10px;}
+.ft-icon{width:28px;height:28px;border-radius:8px;background:var(--azure);display:flex;align-items:center;justify-content:center;}
+.ft-tagline{font-size:13px;color:rgba(255,255,255,.28);line-height:1.65;max-width:190px;margin-bottom:18px;}
+.ft-socials{display:flex;gap:7px;}
+.ft-soc{width:30px;height:30px;border-radius:8px;border:1px solid rgba(255,255,255,.1);display:flex;align-items:center;justify-content:center;color:rgba(255,255,255,.3);font-size:10.5px;font-weight:700;text-decoration:none;transition:all .2s;}
+.ft-soc:hover{border-color:rgba(255,255,255,.25);color:#fff;}
+.footer-cols{display:grid;grid-template-columns:repeat(4,1fr);gap:24px;}
+.fc-title{font-size:11px;font-weight:600;letter-spacing:.09em;text-transform:uppercase;color:rgba(255,255,255,.3);margin-bottom:13px;}
+.fc-link{display:block;font-size:13.5px;color:rgba(255,255,255,.3);text-decoration:none;margin-bottom:9px;transition:color .2s;}
+.fc-link:hover{color:rgba(255,255,255,.7);}
+.footer-bottom{border-top:1px solid rgba(255,255,255,.06);padding-top:22px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:10px;}
+.ft-copy{font-size:12.5px;color:rgba(255,255,255,.18);}
+.ft-legal{display:flex;gap:18px;}
+.ft-legal a{font-size:12.5px;color:rgba(255,255,255,.22);text-decoration:none;}
+.ft-legal a:hover{color:rgba(255,255,255,.5);}
+
+/* ─ RESPONSIVE ─ */
+@media(max-width:768px){
+  nav{padding:0 18px;}
+  .nav-links{display:none;}
+  .hero-body,.hero-mockup{padding-left:18px;padding-right:18px;}
+  .section{padding:60px 18px;}
+  .aud-split,.feat-grid,.steps,.stats,.testimonials,.plans,.footer-top{grid-template-columns:1fr;}
+  .f-card.hero-feat{grid-template-columns:1fr;}
+  .feat-wide{grid-column:auto;}
+  .footer-cols{grid-template-columns:1fr 1fr;}
+  .mockup-content{grid-template-columns:1fr;}
+  .m-sidebar{display:none;}
+  .m-cards{grid-template-columns:1fr 1fr;}
+  .m-jobs{grid-template-columns:1fr;}
+  .aud-toggle{flex-wrap:wrap;}
+}
+</style>
+</head>
+<body>
+
+<!-- ─ NAV ─ -->
+<nav>
+  <a href="#" class="nav-brand">
+    <div class="nav-icon">
+      <svg width="17" height="17" viewBox="0 0 28 28" fill="none">
+        <path d="M8 20L8 10L18 10" stroke="white" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/>
+        <path d="M8 10L20 22" stroke="white" stroke-width="2.6" stroke-linecap="round"/>
+      </svg>
+    </div>
+    <span class="nav-name">Impulsio</span>
+  </a>
+  <div class="nav-links">
+    <a href="#para-vos">Para vos</a>
+    <a href="#como-funciona">Cómo funciona</a>
+    <a href="#funciones">Funciones</a>
+    <a href="#precios">Precios</a>
+    <a href="#faq">FAQ</a>
+  </div>
+  <div class="nav-end">
+    <a href="#" class="btn-ghost-sm">Ingresar</a>
+    <a href="#" class="btn-cta-sm">Empezar gratis</a>
+  </div>
+</nav>
+
+<!-- ─ HERO ─ -->
+<section class="hero">
+  <div class="hero-orb1"></div>
+  <div class="hero-orb2"></div>
+  <div class="hero-grid"></div>
+
+  <div class="hero-body">
+    <div class="hero-inner">
+
+      <!-- Audience toggle -->
+      <div class="aud-toggle a1" id="toggle">
+        <span class="aud-btn active" onclick="switchAud('busco')" id="btn-busco">Estoy buscando trabajo</span>
+        <span class="aud-btn" onclick="switchAud('abierto')" id="btn-abierto">Estoy empleado, pero abierto</span>
+      </div>
+
+      <div class="hero-badge a2">
+        <span class="badge-dot"></span>
+        <span id="badge-text">Más de 2.400 profesionales ya lo usan en LATAM</span>
+      </div>
+
+      <h1 class="hero-h1 a3" id="hero-h1">
+        Tu carrera,<br>
+        <em class="accent italic">impulsada</em><br>
+        <span class="dim">por inteligencia artificial.</span>
+      </h1>
+
+      <p class="hero-sub a4" id="hero-sub">
+        Cargá tu CV y en minutos tenés <strong>versiones optimizadas para cada oferta</strong>,
+        postulaciones automatizadas y un <strong>entrenador de entrevistas</strong> disponible 24/7.
+      </p>
+
+      <div class="hero-ctas a4">
+        <a href="#" class="btn-primary" id="hero-cta1">
+          <svg width="17" height="17" viewBox="0 0 24 24" fill="none"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4M7 10l5 5 5-5M12 15V3" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          Subir mi CV gratis
+        </a>
+        <a href="#para-vos" class="btn-outline" id="hero-cta2">Ver qué puedo hacer con Impulsio →</a>
+      </div>
+
+      <div class="hero-trust a5">
+        <div class="trust-item">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none"><path d="M12 2l3 7h7l-5.5 4 2 7L12 16l-6.5 4 2-7L2 9h7z" fill="rgba(251,191,36,.8)"/></svg>
+          4.9 de valoración promedio
+        </div>
+        <span class="trust-sep">|</span>
+        <div class="trust-item">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" stroke="rgba(255,255,255,.4)" stroke-width="1.5"/></svg>
+          Tus datos son tuyos
+        </div>
+        <span class="trust-sep">|</span>
+        <div class="trust-item">Sin tarjeta de crédito para empezar</div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- Dashboard mockup -->
+  <div class="hero-mockup a5">
+    <div class="mockup-shell">
+      <div class="mockup-bar">
+        <div class="m-dot" style="background:#FF5F57"></div>
+        <div class="m-dot" style="background:#FEBC2E"></div>
+        <div class="m-dot" style="background:#28C840"></div>
+        <span class="m-url">impulsio.io/dashboard</span>
+      </div>
+      <div class="mockup-content">
+        <div class="m-sidebar">
+          <div class="m-nav-item on">
+            <svg width="15" height="15" viewBox="0 0 20 20" fill="none"><rect x="3" y="3" width="6" height="6" rx="1.5" stroke="#60A5FA" stroke-width="1.5"/><rect x="11" y="3" width="6" height="6" rx="1.5" stroke="#60A5FA" stroke-width="1.5"/><rect x="3" y="11" width="6" height="6" rx="1.5" stroke="#60A5FA" stroke-width="1.5"/><rect x="11" y="11" width="6" height="6" rx="1.5" stroke="#60A5FA" stroke-width="1.5"/></svg>
+            Dashboard
+          </div>
+          <div class="m-nav-item">
+            <svg width="15" height="15" viewBox="0 0 20 20" fill="none"><path d="M4 4h8l4 4v8H4V4z" stroke="rgba(255,255,255,.3)" stroke-width="1.5" stroke-linejoin="round"/><path d="M12 4v4h4" stroke="rgba(255,255,255,.3)" stroke-width="1.5" stroke-linecap="round"/></svg>
+            Mi CV
+          </div>
+          <div class="m-nav-item">
+            <svg width="15" height="15" viewBox="0 0 20 20" fill="none"><circle cx="10" cy="10" r="7" stroke="rgba(255,255,255,.3)" stroke-width="1.5"/><path d="M10 6v4l2.5 2.5" stroke="rgba(255,255,255,.3)" stroke-width="1.5" stroke-linecap="round"/></svg>
+            Postulaciones
+          </div>
+          <div class="m-nav-item">
+            <svg width="15" height="15" viewBox="0 0 20 20" fill="none"><path d="M10 2L2 7v6l8 5 8-5V7l-8-5z" stroke="rgba(255,255,255,.3)" stroke-width="1.5" stroke-linejoin="round"/></svg>
+            Entrenamiento
+          </div>
+          <div class="m-nav-item">
+            <svg width="15" height="15" viewBox="0 0 20 20" fill="none"><circle cx="8" cy="7" r="3" stroke="rgba(255,255,255,.3)" stroke-width="1.5"/><path d="M2 17c0-3.314 2.686-6 6-6s6 2.686 6 6" stroke="rgba(255,255,255,.3)" stroke-width="1.5" stroke-linecap="round"/></svg>
+            Networking
+          </div>
+        </div>
+        <div class="m-main">
+          <div class="m-greeting">
+            <strong>Buenos días, Martina ✦</strong>
+            Tenés 4 ofertas con match superior al 80% esta semana.
+          </div>
+          <div class="m-cards">
+            <div class="m-card blue">
+              <p class="mc-label">CV Score</p>
+              <p class="mc-val">86</p>
+              <p class="mc-sub sky">+18 esta semana</p>
+            </div>
+            <div class="m-card green">
+              <p class="mc-label">Postulaciones</p>
+              <p class="mc-val">12</p>
+              <p class="mc-sub up">4 con respuesta</p>
+            </div>
+            <div class="m-card warm">
+              <p class="mc-label">Entrevistas</p>
+              <p class="mc-val">3</p>
+              <p class="mc-sub amber">Esta semana</p>
+            </div>
+          </div>
+          <div class="m-jobs">
+            <div class="m-job">
+              <p class="mj-co">Mercado Libre · Buenos Aires</p>
+              <p class="mj-title">Senior Product Manager</p>
+              <span class="mj-match"><svg width="6" height="6" viewBox="0 0 6 6" fill="none"><circle cx="3" cy="3" r="3" fill="#34D399"/></svg>93% match</span>
+            </div>
+            <div class="m-job">
+              <p class="mj-co">Globant · Remoto LATAM</p>
+              <p class="mj-title">UX Research Lead</p>
+              <span class="mj-match"><svg width="6" height="6" viewBox="0 0 6 6" fill="none"><circle cx="3" cy="3" r="3" fill="#34D399"/></svg>88% match</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ─ PORTALS ─ -->
+<div class="portals">
+  <div class="portals-inner">
+    <span class="portals-label">Conectamos con los portales que ya usás:</span>
+    <span class="portal-chip">LinkedIn</span>
+    <span class="portal-chip">ZonaJobs</span>
+    <span class="portal-chip">Bumeran</span>
+    <span class="portal-chip">Indeed</span>
+    <span class="portal-chip">Computrabajo</span>
+    <span class="portal-chip">GetOnBoard</span>
+  </div>
+</div>
+
+<!-- ─ AUDIENCE SPLIT ─ -->
+<section class="section audience" id="para-vos">
+  <div class="inner">
+    <p class="eyebrow">Para cada momento de tu carrera</p>
+    <h2 class="h2">Impulsio se adapta<br>a donde estás hoy</h2>
+    <p class="lead">No importa si estás mandando CVs activamente o si estás bien pero con un ojo puesto en el mercado. Impulsio tiene un camino para cada caso.</p>
+
+    <div class="aud-split">
+      <div class="aud-card seeker">
+        <span class="aud-tag seeker">Búsqueda activa</span>
+        <h3 class="aud-h3 light">Necesito trabajo<br><em class="italic">ahora mismo</em></h3>
+        <p class="aud-p light">Cada día cuenta. Impulsio te pone en el radar de los reclutadores correctos con el perfil correcto, y automatiza el trabajo repetitivo para que vos te enfoques en prepararte.</p>
+        <ul class="aud-list">
+          <li class="light"><span class="aud-check blue"><svg width="8" height="7" viewBox="0 0 8 7" fill="none"><path d="M1 3.5l2 2 4-4" stroke="rgba(255,255,255,.8)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>CV optimizado para cada oferta en segundos</li>
+          <li class="light"><span class="aud-check blue"><svg width="8" height="7" viewBox="0 0 8 7" fill="none"><path d="M1 3.5l2 2 4-4" stroke="rgba(255,255,255,.8)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Postulaciones automáticas en LinkedIn y ZonaJobs</li>
+          <li class="light"><span class="aud-check blue"><svg width="8" height="7" viewBox="0 0 8 7" fill="none"><path d="M1 3.5l2 2 4-4" stroke="rgba(255,255,255,.8)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Entrenador de entrevistas disponible 24/7</li>
+          <li class="light"><span class="aud-check blue"><svg width="8" height="7" viewBox="0 0 8 7" fill="none"><path d="M1 3.5l2 2 4-4" stroke="rgba(255,255,255,.8)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Alertas VIP cuando aparece la posición ideal</li>
+        </ul>
+        <a href="#" class="btn-aud blue">Empezar a buscar →</a>
+      </div>
+
+      <div class="aud-card open">
+        <span class="aud-tag open">Abierto a oportunidades</span>
+        <h3 class="aud-h3 dark">Estoy bien,<br>pero quiero <em class="italic">más</em></h3>
+        <p class="aud-p dark">No estás desesperado, pero sabés que hay algo mejor ahí afuera. Impulsio mantiene tu perfil vigente y te avisa cuando aparece la oportunidad que vale la pena.</p>
+        <ul class="aud-list">
+          <li class="dark"><span class="aud-check warm"><svg width="8" height="7" viewBox="0 0 8 7" fill="none"><path d="M1 3.5l2 2 4-4" stroke="rgba(255,255,255,.9)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Personal branding en LinkedIn sin esfuerzo</li>
+          <li class="dark"><span class="aud-check warm"><svg width="8" height="7" viewBox="0 0 8 7" fill="none"><path d="M1 3.5l2 2 4-4" stroke="rgba(255,255,255,.9)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Gap analysis: qué te falta para el salto siguiente</li>
+          <li class="dark"><span class="aud-check warm"><svg width="8" height="7" viewBox="0 0 8 7" fill="none"><path d="M1 3.5l2 2 4-4" stroke="rgba(255,255,255,.9)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Alertas discretas de posiciones relevantes</li>
+          <li class="dark"><span class="aud-check warm"><svg width="8" height="7" viewBox="0 0 8 7" fill="none"><path d="M1 3.5l2 2 4-4" stroke="rgba(255,255,255,.9)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Networking inteligente con decisores clave</li>
+        </ul>
+        <a href="#" class="btn-aud warm">Explorar opciones →</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ─ HOW IT WORKS ─ -->
+<section class="section how" id="como-funciona">
+  <div class="inner">
+    <p class="eyebrow">Cómo funciona</p>
+    <h2 class="h2">De cero a postulado<br>en menos de 5 minutos</h2>
+    <p class="lead">Sin formularios eternos. La IA hace el trabajo pesado para que vos te enfoques en lo que importa.</p>
+
+    <div class="steps">
+      <div class="step">
+        <span class="step-n">01</span>
+        <div class="step-icon">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4M7 10l5 5 5-5M12 15V3" stroke="#2563EB" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </div>
+        <h3 class="step-title">Cargá tu CV</h3>
+        <p class="step-desc">PDF, Word o foto. O completá tu perfil desde cero. El OCR inteligente extrae y estructura toda tu experiencia en segundos. Sin re-tipear nada.</p>
+      </div>
+      <div class="step">
+        <span class="step-n">02</span>
+        <div class="step-icon">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5" stroke="#2563EB" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </div>
+        <h3 class="step-title">La IA lo potencia</h3>
+        <p class="step-desc">Analizamos la oferta que te interesa y generamos una versión de tu CV con las keywords exactas que busca el ATS y el impacto visual que nota el reclutador.</p>
+      </div>
+      <div class="step">
+        <span class="step-n">03</span>
+        <div class="step-icon">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none"><path d="M13 10V3L4 14h7v7l9-11h-7z" stroke="#2563EB" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </div>
+        <h3 class="step-title">Postulá y prepárate</h3>
+        <p class="step-desc">El sistema completa los formularios y carga tu CV en los portales. Mientras tanto el entrenador virtual te prepara para la entrevista que viene.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ─ FEATURES ─ -->
+<section class="section features" id="funciones">
+  <div class="inner">
+    <p class="eyebrow">Funcionalidades</p>
+    <h2 class="h2">Todo lo que necesitás,<br>nada que no uses</h2>
+    <p class="lead">Cada función está diseñada para un momento real de la búsqueda laboral. Sin bloat, sin ruido.</p>
+
+    <div class="feat-grid">
+      <div class="f-card hero-feat feat-wide">
+        <div>
+          <div class="f-icon dark"><svg width="22" height="22" viewBox="0 0 24 24" fill="none"><path d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" stroke="#60A5FA" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+          <h3 class="f-title light" style="font-size:24px;">Optimización de CV<br><em class="italic" style="color:var(--sky);">con IA generativa</em></h3>
+          <p class="f-desc light" style="max-width:340px;">Analizamos la oferta, identificamos las keywords del ATS y reescribimos tu experiencia para maximizar el match. Cada versión es única para cada puesto.</p>
+          <div class="f-tags">
+            <span class="tag ghost">Análisis ATS</span>
+            <span class="tag ghost">Multi-formato</span>
+            <span class="tag ghost">OCR</span>
+            <span class="tag ghost">Versiones ilimitadas</span>
+          </div>
+        </div>
+        <div class="ats-visual">
+          <div style="font-size:10.5px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:rgba(255,255,255,.3);margin-bottom:2px;">ATS Score — Software Engineer Sr.</div>
+          <div class="av-row">
+            <span class="av-label">Keywords detectadas</span>
+            <div class="av-bar-bg"><div class="av-bar-fill" style="width:91%;background:var(--sky)"></div></div>
+            <span class="av-val">91%</span>
+          </div>
+          <div class="av-row">
+            <span class="av-label">Formato ATS-friendly</span>
+            <div class="av-bar-bg"><div class="av-bar-fill" style="width:96%;background:var(--sky)"></div></div>
+            <span class="av-val">96%</span>
+          </div>
+          <div class="av-row">
+            <span class="av-label">Impacto visual</span>
+            <div class="av-bar-bg"><div class="av-bar-fill" style="width:78%;background:var(--gold)"></div></div>
+            <span class="av-val">78%</span>
+          </div>
+          <div class="av-row" style="border-top:1px solid rgba(255,255,255,.05);margin-top:2px;padding-top:12px;">
+            <span class="av-label" style="font-weight:500;color:rgba(255,255,255,.7);">Score general</span>
+            <div class="av-bar-bg"><div class="av-bar-fill" style="width:88%;background:var(--sky)"></div></div>
+            <span class="av-val" style="color:var(--sky);font-size:14px;font-weight:600;">88</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="f-card">
+        <div class="f-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none"><path d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 12.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z" stroke="#2563EB" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+        <h3 class="f-title">Entrenador de entrevistas</h3>
+        <p class="f-desc">Reclutador virtual que conoce el puesto al que aplicás. Feedback en tiempo real sobre tus respuestas, tono y estructura. Practicá hasta sentirte listo.</p>
+        <div class="f-tags"><span class="tag blue">Simulación real</span><span class="tag blue">Feedback IA</span><span class="tag blue">Por industria</span></div>
+      </div>
+
+      <div class="f-card">
+        <div class="f-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none"><path d="M13 10V3L4 14h7v7l9-11h-7z" stroke="#2563EB" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+        <h3 class="f-title">Automatización de portales</h3>
+        <p class="f-desc">Auto-login y carga inteligente en LinkedIn y ZonaJobs. Seguimiento visual del estado de cada aplicación. Más postulaciones, menos tiempo frente a formularios.</p>
+        <div class="f-tags"><span class="tag blue">Auto-apply</span><span class="tag blue">Tracking</span><span class="tag blue">Multi-portal</span></div>
+      </div>
+
+      <div class="f-card">
+        <div class="f-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none"><path d="M15 10l4.553-2.069A1 1 0 0121 8.87V15.13a1 1 0 01-1.447.899L15 14M5 18h8a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 002 2z" stroke="#2563EB" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+        <h3 class="f-title">Video presentación con IA</h3>
+        <p class="f-desc">Avatar y lip-sync profesional generado desde tu perfil. Un pitch de 60 segundos que destaca en LinkedIn y diferencia tu aplicación de las demás.</p>
+        <div class="f-tags"><span class="tag blue">Avatar IA</span><span class="tag blue">Guión automático</span></div>
+      </div>
+
+      <div class="f-card">
+        <div class="f-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none"><path d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" stroke="#2563EB" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+        <h3 class="f-title">Gap analysis y carrera</h3>
+        <p class="f-desc">Analizamos tu perfil contra las posiciones a las que apuntás y te mostramos exactamente qué habilidades desarrollar. Con sugerencias de cursos específicos.</p>
+        <div class="f-tags"><span class="tag blue">Análisis de brecha</span><span class="tag blue">Cursos sugeridos</span></div>
+      </div>
+
+      <div class="f-card">
+        <div class="f-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none"><path d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0z" stroke="#2563EB" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+        <h3 class="f-title">Networking inteligente</h3>
+        <p class="f-desc">Contactos clave en las empresas que te interesan. Mensajes de apertura de menos de 200 caracteres optimizados para obtener respuesta. Sin parecer spam.</p>
+        <div class="f-tags"><span class="tag blue">Contactos clave</span><span class="tag blue">Mensajes IA</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ─ SOCIAL PROOF ─ -->
+<section class="section proof">
+  <div class="inner">
+    <p class="eyebrow">Resultados reales</p>
+    <h2 class="h2">Números que<br><em class="italic" style="color:var(--azure);">hablan solos</em></h2>
+    <p class="lead">Profesionales de Argentina, México, Colombia y Chile ya lo usan para manejar su carrera.</p>
+
+    <div class="stats">
+      <div class="stat"><p class="stat-val">3.2×</p><p class="stat-label">más llamadas a entrevistas con CV optimizado</p></div>
+      <div class="stat"><p class="stat-val">68%</p><p class="stat-label">consiguió empleo en menos de 60 días</p></div>
+      <div class="stat"><p class="stat-val">12min</p><p class="stat-label">promedio para generar CV optimizado desde cero</p></div>
+      <div class="stat"><p class="stat-val">2.4K+</p><p class="stat-label">profesionales activos en LATAM</p></div>
+    </div>
+
+    <div class="testimonials">
+      <div class="testi">
+        <p class="testi-stars">★★★★★</p>
+        <span class="testi-tag seeker">Búsqueda activa</span>
+        <p class="testi-text">"Estuve 4 meses mandando CV sin respuesta. Con Impulsio en la primera semana tuve 3 entrevistas. El análisis ATS me mostró por qué mis CVs anteriores no pasaban el filtro."</p>
+        <div class="testi-author">
+          <div class="testi-avatar" style="background:var(--azure);">SL</div>
+          <div><p class="testi-name">Sofía López</p><p class="testi-role">UX Designer · Buenos Aires</p></div>
+        </div>
+      </div>
+
+      <div class="testi">
+        <p class="testi-stars">★★★★★</p>
+        <span class="testi-tag open">Abierto a oportunidades</span>
+        <p class="testi-text">"Estaba bien en mi trabajo pero el gap analysis me mostró exactamente qué me faltaba para el siguiente nivel. En 3 meses hice los cursos y empecé a aplicar. Conseguí el trabajo en Globant."</p>
+        <div class="testi-author">
+          <div class="testi-avatar" style="background:var(--warm);">MR</div>
+          <div><p class="testi-name">Matías Rodríguez</p><p class="testi-role">Backend Developer · Córdoba</p></div>
+        </div>
+      </div>
+
+      <div class="testi">
+        <p class="testi-stars">★★★★★</p>
+        <span class="testi-tag seeker">Búsqueda activa</span>
+        <p class="testi-text">"El simulador de entrevistas es una locura. Me preparó para preguntas que nunca hubiera imaginado. Llegué a la entrevista final de MeLi con una seguridad que no tenía antes."</p>
+        <div class="testi-author">
+          <div class="testi-avatar" style="background:var(--mint);">CV</div>
+          <div><p class="testi-name">Carolina Vega</p><p class="testi-role">Product Manager · Ciudad de México</p></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ─ PRICING ─ -->
+<section class="section pricing" id="precios">
+  <div class="inner">
+    <p class="eyebrow light">Planes</p>
+    <h2 class="h2 light">Tres caminos,<br>un mismo destino</h2>
+    <p class="lead light">Empezá gratis. Escalá cuando estés listo. Cada plan está calibrado para un momento diferente de tu carrera.</p>
+
+    <div class="plans">
+
+      <!-- BASIC -->
+      <div class="plan">
+        <span class="plan-badge basic">Basic</span>
+        <div class="plan-icon basic">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M13 10V3L4 14h7v7l9-11h-7z" stroke="rgba(255,255,255,.5)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </div>
+        <div class="plan-price-row">
+          <span class="plan-price-num">Gratis</span>
+        </div>
+        <p class="plan-desc">Para explorar la plataforma y dar el primer paso.</p>
+        <div class="plan-divider"></div>
+        <ul class="plan-feats">
+          <li><span class="pf-check"><svg width="8" height="7" viewBox="0 0 8 7" fill="none"><path d="M1 3.5l2 2 4-4" stroke="rgba(255,255,255,.7)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>1 optimización de CV con IA</li>
+          <li><span class="pf-check"><svg width="8" height="7" viewBox="0 0 8 7" fill="none"><path d="M1 3.5l2 2 4-4" stroke="rgba(255,255,255,.7)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Buscador centralizado de vacantes</li>
+          <li><span class="pf-check"><svg width="8" height="7" viewBox="0 0 8 7" fill="none"><path d="M1 3.5l2 2 4-4" stroke="rgba(255,255,255,.7)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Alertas de empleo por email</li>
+          <li><span class="pf-check"><svg width="8" height="7" viewBox="0 0 8 7" fill="none"><path d="M1 3.5l2 2 4-4" stroke="rgba(255,255,255,.7)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Perfil de candidato completo</li>
+          <li><span class="pf-x"><svg width="8" height="7" viewBox="0 0 8 7" fill="none"><path d="M1.5 1.5l5 5M6.5 1.5l-5 5" stroke="rgba(255,255,255,.35)" stroke-width="1.5" stroke-linecap="round"/></svg></span><span style="opacity:.35">Automatización de portales</span></li>
+          <li><span class="pf-x"><svg width="8" height="7" viewBox="0 0 8 7" fill="none"><path d="M1.5 1.5l5 5M6.5 1.5l-5 5" stroke="rgba(255,255,255,.35)" stroke-width="1.5" stroke-linecap="round"/></svg></span><span style="opacity:.35">Entrenador de entrevistas</span></li>
+        </ul>
+        <a href="#" class="btn-plan ghost">Empezar gratis</a>
+        <p class="plan-note">Sin tarjeta · Sin límite de tiempo</p>
+      </div>
+
+      <!-- PRO -->
+      <div class="plan">
+        <span class="plan-badge pro">Pro</span>
+        <div class="plan-icon pro">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5" stroke="#60A5FA" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </div>
+        <div class="plan-price-row">
+          <span class="plan-price-curr">$</span><span class="plan-price-num">12</span><span class="plan-price-period"> USD/mes</span>
+        </div>
+        <p class="plan-desc">Para profesionales en búsqueda activa que quieren resultados rápidos.</p>
+        <div class="plan-divider"></div>
+        <ul class="plan-feats">
+          <li><span class="pf-check blue"><svg width="8" height="7" viewBox="0 0 8 7" fill="none"><path d="M1 3.5l2 2 4-4" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>CV optimizados ilimitados</li>
+          <li><span class="pf-check blue"><svg width="8" height="7" viewBox="0 0 8 7" fill="none"><path d="M1 3.5l2 2 4-4" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Automatización LinkedIn + ZonaJobs</li>
+          <li><span class="pf-check blue"><svg width="8" height="7" viewBox="0 0 8 7" fill="none"><path d="M1 3.5l2 2 4-4" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Video presentación con IA</li>
+          <li><span class="pf-check blue"><svg width="8" height="7" viewBox="0 0 8 7" fill="none"><path d="M1 3.5l2 2 4-4" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Mejora de foto de perfil con IA</li>
+          <li><span class="pf-check blue"><svg width="8" height="7" viewBox="0 0 8 7" fill="none"><path d="M1 3.5l2 2 4-4" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Networking inteligente</li>
+          <li><span class="pf-check blue"><svg width="8" height="7" viewBox="0 0 8 7" fill="none"><path d="M1 3.5l2 2 4-4" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Alertas por WhatsApp / Telegram</li>
+        </ul>
+        <a href="#" class="btn-plan blue">Comenzar con Pro</a>
+        <p class="plan-note">7 días gratis · Cancelá cuando quieras</p>
+      </div>
+
+      <!-- ELITE -->
+      <div class="plan">
+        <span class="plan-badge elite">Elite</span>
+        <div class="plan-icon elite">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M12 2l3 7h7l-5.5 4 2 7L12 16l-6.5 4 2-7L2 9h7z" stroke="#FBBF24" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </div>
+        <div class="plan-price-row">
+          <span class="plan-price-curr">$</span><span class="plan-price-num">29</span><span class="plan-price-period"> USD/mes</span>
+        </div>
+        <p class="plan-desc">Para quienes buscan el salto definitivo o quieren gestionar su carrera a largo plazo.</p>
+        <div class="plan-divider"></div>
+        <ul class="plan-feats">
+          <li><span class="pf-check gold"><svg width="8" height="7" viewBox="0 0 8 7" fill="none"><path d="M1 3.5l2 2 4-4" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Todo lo del plan Pro</li>
+          <li><span class="pf-check gold"><svg width="8" height="7" viewBox="0 0 8 7" fill="none"><path d="M1 3.5l2 2 4-4" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Entrenador de entrevistas con IA</li>
+          <li><span class="pf-check gold"><svg width="8" height="7" viewBox="0 0 8 7" fill="none"><path d="M1 3.5l2 2 4-4" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Gap Analysis + cursos sugeridos</li>
+          <li><span class="pf-check gold"><svg width="8" height="7" viewBox="0 0 8 7" fill="none"><path d="M1 3.5l2 2 4-4" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Personal Branding en LinkedIn</li>
+          <li><span class="pf-check gold"><svg width="8" height="7" viewBox="0 0 8 7" fill="none"><path d="M1 3.5l2 2 4-4" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Elevator Pitch de alto impacto</li>
+          <li><span class="pf-check gold"><svg width="8" height="7" viewBox="0 0 8 7" fill="none"><path d="M1 3.5l2 2 4-4" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Alertas VIP con filtros avanzados</li>
+        </ul>
+        <a href="#" class="btn-plan gold">Activar Elite</a>
+        <p class="plan-note">7 días gratis · Cancelá cuando quieras</p>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ─ FAQ ─ -->
+<section class="section faq" id="faq">
+  <div class="inner">
+    <p class="eyebrow">Preguntas frecuentes</p>
+    <h2 class="h2">Todo lo que<br>necesitás saber</h2>
+
+    <div class="faq-list">
+      <div class="faq-item" onclick="toggleFaq(this)">
+        <div class="faq-q">¿Funciona si estoy empleado y no quiero que mi empresa lo sepa?<span class="faq-toggle">+</span></div>
+        <p class="faq-a">Sí. Impulsio opera de forma completamente discreta. Tus postulaciones no son visibles para terceros y podés configurar alertas silenciosas por WhatsApp o email privado. Tu perfil de LinkedIn solo se actualiza si vos lo autorizás explícitamente.</p>
+      </div>
+      <div class="faq-item" onclick="toggleFaq(this)">
+        <div class="faq-q">¿Impulsio reemplaza a un headhunter o coach de carrera?<span class="faq-toggle">+</span></div>
+        <p class="faq-a">No exactamente, y tampoco pretende hacerlo. Impulsio automatiza el 80% del trabajo operativo de una búsqueda y te da herramientas que antes solo tenían quienes pagaban coaching individual. Para posiciones de alta dirección o cambios de industria radicales, un especialista sigue teniendo valor. Para la gran mayoría de búsquedas del mercado, Impulsio es suficiente y mucho más ágil.</p>
+      </div>
+      <div class="faq-item" onclick="toggleFaq(this)">
+        <div class="faq-q">¿La automatización puede banear mi cuenta de LinkedIn?<span class="faq-toggle">+</span></div>
+        <p class="faq-a">No. Usamos una metodología de automatización responsable que respeta los límites de la plataforma. No hacemos bulk-apply masivo — aplicamos de forma selectiva a posiciones con alto match, lo que además mejora tu tasa de respuesta real.</p>
+      </div>
+      <div class="faq-item" onclick="toggleFaq(this)">
+        <div class="faq-q">¿Funciona para todos los rubros o solo tech?<span class="faq-toggle">+</span></div>
+        <p class="faq-a">Funciona para cualquier industria y nivel. La IA está entrenada con patrones de selección de RRHH de Argentina y LATAM en sectores como tecnología, finanzas, marketing, RRHH, salud, educación, retail y más. Las keywords y el score ATS se adaptan automáticamente por industria.</p>
+      </div>
+      <div class="faq-item" onclick="toggleFaq(this)">
+        <div class="faq-q">¿Mis datos son seguros? ¿Quién ve mi CV?<span class="faq-toggle">+</span></div>
+        <p class="faq-a">Vos sos el dueño de tu información. Impulsio tiene licencia operativa para procesar tus datos y mejorar el servicio, pero nunca los vende ni los comparte sin tu consentimiento. Todo está encriptado y podés solicitar la eliminación de tu cuenta en cualquier momento, sin trámites.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ─ CTA FINAL ─ -->
+<section class="cta-band">
+  <div class="cta-orb"></div>
+  <div class="cta-inner">
+    <h2 class="cta-h2">Tu próximo trabajo<br>te está <em>esperando</em></h2>
+    <p class="cta-sub">Más de 2.400 profesionales en LATAM ya dieron el salto. El único paso que falta sos vos.</p>
+    <div class="cta-actions">
+      <a href="#" class="btn-cta-lg">
+        <svg width="17" height="17" viewBox="0 0 24 24" fill="none"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4M7 10l5 5 5-5M12 15V3" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        Subir mi CV gratis ahora
+      </a>
+      <a href="#precios" class="btn-outline-lg">Ver todos los planes →</a>
+    </div>
+    <p class="cta-note">Sin tarjeta de crédito · Listo en menos de 5 minutos</p>
+  </div>
+</section>
+
+<!-- ─ FOOTER ─ -->
+<footer>
+  <div class="footer-inner">
+    <div class="footer-top">
+      <div>
+        <div class="ft-brand">
+          <div class="ft-icon"><svg width="15" height="15" viewBox="0 0 28 28" fill="none"><path d="M8 20L8 10L18 10" stroke="white" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/><path d="M8 10L20 22" stroke="white" stroke-width="2.6" stroke-linecap="round"/></svg></div>
+          Impulsio
+        </div>
+        <p class="ft-tagline">Tu copiloto laboral con IA. Hecho en Argentina para toda LATAM.</p>
+        <div class="ft-socials">
+          <a href="#" class="ft-soc">in</a>
+          <a href="#" class="ft-soc">tw</a>
+          <a href="#" class="ft-soc">ig</a>
+        </div>
+      </div>
+      <div class="footer-cols">
+        <div>
+          <p class="fc-title">Producto</p>
+          <a href="#" class="fc-link">Cómo funciona</a>
+          <a href="#" class="fc-link">Funciones</a>
+          <a href="#" class="fc-link">Precios</a>
+          <a href="#" class="fc-link">Para empresas</a>
+        </div>
+        <div>
+          <p class="fc-title">Recursos</p>
+          <a href="#" class="fc-link">Blog de carrera</a>
+          <a href="#" class="fc-link">Guía ATS</a>
+          <a href="#" class="fc-link">Templates de CV</a>
+          <a href="#" class="fc-link">Comunidad</a>
+        </div>
+        <div>
+          <p class="fc-title">Empresa</p>
+          <a href="#" class="fc-link">Sobre Impulsio</a>
+          <a href="#" class="fc-link">Prensa</a>
+          <a href="#" class="fc-link">Contacto</a>
+        </div>
+        <div>
+          <p class="fc-title">Legal</p>
+          <a href="#" class="fc-link">Términos y condiciones</a>
+          <a href="#" class="fc-link">Política de privacidad</a>
+          <a href="#" class="fc-link">Cookies</a>
+          <a href="#" class="fc-link">INPI / Marca registrada</a>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p class="ft-copy">© 2026 Impulsio. Todos los derechos reservados. Buenos Aires, Argentina.</p>
+      <div class="ft-legal">
+        <a href="#">Privacidad</a>
+        <a href="#">Términos</a>
+        <a href="#">Cookies</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script>
+// ─ Audience toggle ─
+const copies = {
+  busco: {
+    badge: 'Más de 2.400 profesionales ya lo usan en LATAM',
+    h1: 'Tu carrera,<br><em class="accent italic">impulsada</em><br><span class="dim">por inteligencia artificial.</span>',
+    sub: 'Cargá tu CV y en minutos tenés <strong>versiones optimizadas para cada oferta</strong>, postulaciones automatizadas y un <strong>entrenador de entrevistas</strong> disponible 24/7.',
+    cta1: 'Subir mi CV gratis',
+    cta2: 'Ver qué puedo hacer con Impulsio →'
+  },
+  abierto: {
+    badge: 'Usado por profesionales que ya tienen trabajo — y quieren el siguiente',
+    h1: 'Estás bien.<br><em class="accent italic">Pero podés</em><br><span class="dim">estar mejor.</span>',
+    sub: 'Mantené tu perfil vigente, detectá la oportunidad correcta cuando aparece y preparate para hacer el salto sin arriesgar lo que ya tenés.',
+    cta1: 'Explorar Impulsio gratis',
+    cta2: 'Ver cómo funciona para mí →'
+  }
+};
+
+function switchAud(mode) {
+  const c = copies[mode];
+  document.getElementById('badge-text').textContent = c.badge;
+  document.getElementById('hero-h1').innerHTML = c.h1;
+  document.getElementById('hero-sub').innerHTML = c.sub;
+  document.getElementById('hero-cta1').innerHTML = '<svg width="17" height="17" viewBox="0 0 24 24" fill="none"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4M7 10l5 5 5-5M12 15V3" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg> ' + c.cta1;
+  document.getElementById('hero-cta2').textContent = c.cta2;
+  document.getElementById('btn-busco').classList.toggle('active', mode === 'busco');
+  document.getElementById('btn-abierto').classList.toggle('active', mode === 'abierto');
+}
+
+// ─ FAQ ─
+function toggleFaq(item) {
+  const open = item.classList.contains('open');
+  document.querySelectorAll('.faq-item').forEach(i => i.classList.remove('open'));
+  if (!open) item.classList.add('open');
+}
+
+// ─ Scroll reveal ─
+const obs = new IntersectionObserver(entries => {
+  entries.forEach(e => {
+    if (e.isIntersecting) {
+      e.target.style.opacity = '1';
+      e.target.style.transform = 'translateY(0)';
+      obs.unobserve(e.target);
+    }
+  });
+}, { threshold: 0.08 });
+
+document.querySelectorAll('.step,.f-card,.testi,.stat,.plan,.aud-card').forEach(el => {
+  el.style.opacity = '0';
+  el.style.transform = 'translateY(22px)';
+  el.style.transition = 'opacity .55s ease, transform .55s ease';
+  obs.observe(el);
+});
+
+// ─ Active nav ─
+window.addEventListener('scroll', () => {
+  let cur = '';
+  document.querySelectorAll('section[id]').forEach(s => {
+    if (window.scrollY >= s.offsetTop - 90) cur = s.id;
+  });
+  document.querySelectorAll('.nav-links a').forEach(a => {
+    a.style.color = a.getAttribute('href') === '#' + cur ? '#fff' : '';
+  });
+});
+</script>
+</body>
+</html>
