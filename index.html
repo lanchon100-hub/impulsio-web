@@ -957,3 +957,48 @@ window.addEventListener('scroll', () => {
 </script>
 </body>
 </html>
+<!-- Importamos la librería de Supabase desde un CDN -->
+<script type="module">
+  import { createClient } from 'https://cdn.jsdelivr.net/npm/@supabase/supabase-js/+esm'
+
+  // CONFIGURACIÓN: Reemplaza con tus datos reales
+  const SUPABASE_URL = 'https://amrckcckdmdpijwutwrg.supabase.co'
+  const SUPABASE_KEY = 'sb_publishable_ShYjhs-_DmNdI90lUEdwxg_8CNc2uX3'
+  const supabase = createClient(SUPABASE_URL, SUPABASE_KEY)
+
+  // FUNCIÓN PARA LOGIN CON GOOGLE
+  async function signInWithGoogle() {
+    const { data, error } = await supabase.auth.signInWithOAuth({
+      provider: 'google',
+      options: {
+        // Esto redirige al usuario de vuelta a tu web tras loguearse
+        redirectTo: window.location.origin 
+      }
+    })
+    if (error) console.error('Error en login:', error.message)
+  }
+
+  // ESCUCHAR CAMBIOS DE SESIÓN
+  // Esto detecta automáticamente cuando el usuario entra o sale
+  supabase.auth.onAuthStateChange((event, session) => {
+    if (event === 'SIGNED_IN') {
+      console.log('Usuario conectado:', session.user)
+      // Aquí podrías, por ejemplo, cambiar el texto del botón a "Mi Perfil"
+    }
+    if (event === 'SIGNED_OUT') {
+      console.log('Usuario desconectado')
+    }
+  })
+
+  // VINCULAR EL BOTÓN DE TU HTML
+  // Supongamos que tu botón de "Ingresar" tiene la clase .btn-login
+  document.addEventListener('DOMContentLoaded', () => {
+    const loginBtn = document.querySelector('.btn-ghost-sm'); // Ajusta el selector a tu botón real
+    if (loginBtn) {
+      loginBtn.addEventListener('click', (e) => {
+        e.preventDefault();
+        signInWithGoogle();
+      });
+    }
+  });
+</script>
