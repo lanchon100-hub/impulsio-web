@@ -1012,3 +1012,42 @@ async function uploadCV(file) {
    // Guarda metadata en tablacv_uploads
    await supabase.from('cv_uploads').insert([{ user_id: user.id, path: data.path }])
 }
+	<script>
+		        // 1. Función para  "Subir mi CV gratis"
+		        document.getElementById('hero-cta1').addEventListener('click', function(e) {
+				            e.preventDefault();
+				            // Aquí podrías abrir un input de archivo o redireccionar
+				            alert("¡Iniciando el asisizar tu CV!");
+				            // window.location.href = "/upload Ejemplo de redirección real
+				        });
+
+        // 2. Función para el selector de audiencia (B Empleado)
+        function switchAud(type) {
+		            const btnBusco = document.getElementById('btn-busco');
+		          btnAbierto = document.getElementById('btn-abierto');
+		   eroH1 = document.getElementById('hero-h1');
+		            const badgeText = document.getElementById('badge-text');
+
+		            // Resetear estados de los botones
+		            o.classList.remove('active');
+		            btnAbiertove('active');
+
+		            if (type === 'busco') {
+				                    btnBusco.classList.add('active');
+				                    badgeText.in = "Más de 2.400 profesionales ya lo usan en LATA       heroH1.innerHTML = 'Tu carrera,<br><em class="accent italic">impulsada</em>an class="dim">por inteligencia artificial.</span>';
+				                } else {
+							                btnAbierto.classList.
+								                badgeText.innerText = "Mantené tu perfil actualizado sin esfuerzo";
+							                heroH1.innerHTM="accent italic">destacá</em><br><span class="dim">cuando sea el momento.</span>';
+							            }
+		        }
+
+        // 3. Lógica para el FAQdeón)
+        document.q-item').forEach(item => {
+		            item.addEventListener('click', () => {
+				                    item.classList.toggle('open');
+				                });
+		        });
+    </script>
+    </body>
+    </html>
