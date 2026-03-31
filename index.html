@@ -1002,3 +1002,13 @@ window.addEventListener('scroll', () => {
     }
   });
 </script>
+js
+
+async function uploadCV(file) {
+	const {data, error } = await supabase.storage
+	.from('cvs')
+	.upload(`user_${user.id}/${file.name}`, file)
+   if (error) throw error
+   // Guarda metadata en tablacv_uploads
+   await supabase.from('cv_uploads').insert([{ user_id: user.id, path: data.path }])
+}
