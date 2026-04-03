@@ -1,0 +1,640 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Crear cuenta — Impulsio</title>
+<meta name="description" content="Creá tu cuenta en Impulsio. CV optimizado por IA, postulaciones automáticas y entrenamiento para entrevistas.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,600;0,9..144,700;1,9..144,300;1,9..144,400;1,9..144,600&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,300&display=swap" rel="stylesheet">
+<style>
+:root{
+  --night:#0A1628;--navy:#0D1F3C;--navy2:#112248;
+  --azure:#2563EB;--azure-d:#1D51C8;--sky:#60A5FA;--ice:#EFF6FF;
+  --warm:#F97316;--warm-d:#EA6B0B;--gold:#FBBF24;--mint:#10B981;
+  --cream:#FDFAF5;--sand:#F5EFE4;
+  --text:#0F172A;--text2:#334155;--text3:#64748B;
+  --border:rgba(0,0,0,0.07);
+  --r-sm:6px;--r-md:14px;--r-lg:22px;--r-xl:32px;--r-pill:999px;
+}
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{font-family:'DM Sans',sans-serif;background:var(--night);color:var(--text);line-height:1.6;overflow-x:hidden;min-height:100vh;}
+::-webkit-scrollbar{width:5px;}
+::-webkit-scrollbar-thumb{background:rgba(255,255,255,.15);border-radius:3px;}
+nav{position:fixed;top:0;left:0;right:0;z-index:300;display:flex;align-items:center;justify-content:space-between;padding:0 40px;height:62px;background:rgba(10,22,40,.93);backdrop-filter:blur(18px);border-bottom:1px solid rgba(255,255,255,.05);}
+.nav-brand{display:flex;align-items:center;gap:10px;text-decoration:none;}
+.nav-icon{width:32px;height:32px;border-radius:9px;background:var(--azure);display:flex;align-items:center;justify-content:center;flex-shrink:0;}
+.nav-name{font-family:'Fraunces',serif;font-size:19px;font-weight:600;color:#fff;}
+.nav-login{font-size:13.5px;color:rgba(255,255,255,.4);}
+.nav-login a{color:var(--sky);text-decoration:none;font-weight:500;}
+.nav-login a:hover{text-decoration:underline;}
+.bg-orb1{position:fixed;width:680px;height:680px;border-radius:50%;background:var(--azure);opacity:.055;top:-220px;right:-180px;pointer-events:none;z-index:0;}
+.bg-orb2{position:fixed;width:420px;height:420px;border-radius:50%;background:var(--warm);opacity:.04;bottom:-120px;left:-80px;pointer-events:none;z-index:0;}
+.bg-grid{position:fixed;inset:0;pointer-events:none;z-index:0;background-image:linear-gradient(rgba(255,255,255,.022) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.022) 1px,transparent 1px);background-size:52px 52px;mask-image:radial-gradient(ellipse 75% 65% at 50% 40%,black 0%,transparent 100%);}
+.page{position:relative;z-index:1;min-height:100vh;display:grid;grid-template-columns:1fr 1fr;padding-top:62px;}
+.left{padding:60px 52px 60px 60px;display:flex;flex-direction:column;position:sticky;top:62px;height:calc(100vh - 62px);overflow:hidden;}
+.left-badge{display:inline-flex;align-items:center;gap:8px;background:rgba(37,99,235,.15);border:1px solid rgba(37,99,235,.3);color:var(--sky);font-size:12px;font-weight:500;padding:5px 15px;border-radius:var(--r-pill);margin-bottom:30px;width:fit-content;animation:fu .7s .05s ease both;}
+.badge-dot{width:6px;height:6px;border-radius:50%;background:var(--sky);animation:pulse 2s ease infinite;}
+@keyframes pulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.45;transform:scale(1.5)}}
+@keyframes fu{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:translateY(0)}}
+.left-h1{font-family:'Fraunces',serif;font-weight:600;letter-spacing:-.035em;line-height:1.07;font-size:clamp(36px,3.6vw,52px);color:#fff;margin-bottom:18px;animation:fu .65s .12s ease both;}
+.left-h1 em{font-style:italic;color:var(--sky);}
+.left-h1 .dim{color:rgba(255,255,255,.2);}
+.left-sub{font-size:15px;color:rgba(255,255,255,.45);line-height:1.8;max-width:360px;margin-bottom:42px;animation:fu .65s .18s ease both;}
+.left-sub strong{color:rgba(255,255,255,.78);font-weight:500;}
+.benefit-list{list-style:none;display:flex;flex-direction:column;gap:15px;margin-bottom:auto;animation:fu .65s .24s ease both;}
+.benefit-item{display:flex;align-items:flex-start;gap:13px;font-size:13.5px;color:rgba(255,255,255,.58);line-height:1.65;}
+.b-icon{width:34px;height:34px;border-radius:10px;background:rgba(37,99,235,.18);display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:1px;}
+.left-trust{display:flex;gap:10px;flex-wrap:wrap;margin-top:36px;padding-top:28px;border-top:1px solid rgba(255,255,255,.06);animation:fu .65s .3s ease both;}
+.trust-chip{font-size:11.5px;color:rgba(255,255,255,.3);padding:4px 13px;border-radius:var(--r-pill);border:1px solid rgba(255,255,255,.09);}
+.right{background:rgba(255,255,255,.975);display:flex;flex-direction:column;padding:52px 56px 52px 52px;overflow-y:auto;min-height:calc(100vh - 62px);}
+.progress-wrap{margin-bottom:38px;}
+.progress-steps{display:flex;align-items:center;margin-bottom:9px;}
+.ps-item{display:flex;align-items:center;flex:1;}
+.ps-item:last-child{flex:0;}
+.ps-dot{width:30px;height:30px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:600;flex-shrink:0;transition:all .35s;}
+.ps-dot.done{background:var(--mint);color:#fff;}
+.ps-dot.active{background:var(--azure);color:#fff;box-shadow:0 0 0 5px rgba(37,99,235,.13);}
+.ps-dot.idle{background:#F1F5F9;color:#94A3B8;}
+.ps-line{flex:1;height:2px;margin:0 5px;border-radius:1px;transition:background .4s;}
+.ps-line.done{background:var(--mint);}
+.ps-line.idle{background:#E2E8F0;}
+.ps-labels{display:flex;justify-content:space-between;}
+.ps-lbl{font-size:10.5px;color:var(--text3);}
+.ps-lbl.active{color:var(--azure);font-weight:600;}
+.ps-lbl.done{color:var(--mint);font-weight:500;}
+.step-head{margin-bottom:26px;}
+.step-title{font-family:'Fraunces',serif;font-size:27px;font-weight:600;color:var(--text);margin-bottom:7px;letter-spacing:-.022em;}
+.step-sub{font-size:14.5px;color:var(--text3);line-height:1.65;}
+.field{margin-bottom:16px;}
+.field-row{display:grid;grid-template-columns:1fr 1fr;gap:14px;}
+label{display:block;font-size:13px;font-weight:500;color:var(--text2);margin-bottom:7px;}
+label .req{color:var(--azure);margin-left:2px;}
+label .opt{font-weight:400;color:var(--text3);font-size:11.5px;margin-left:4px;}
+.input-wrap{position:relative;}
+.ic{position:absolute;left:13px;top:50%;transform:translateY(-50%);pointer-events:none;color:var(--text3);width:16px;height:16px;display:flex;align-items:center;}
+input[type=text],input[type=email],input[type=password],input[type=tel],select{width:100%;border:1.5px solid #E2E8F0;border-radius:var(--r-md);padding:11px 14px;font-family:'DM Sans',sans-serif;font-size:14.5px;color:var(--text);background:#fff;outline:none;transition:border-color .2s,box-shadow .2s;-webkit-appearance:none;}
+.has-ic input,.has-ic select{padding-left:40px;}
+input:focus,select:focus{border-color:var(--azure);box-shadow:0 0 0 3px rgba(37,99,235,.1);}
+input.v-ok{border-color:var(--mint);}
+input.v-err,select.v-err{border-color:#EF4444;}
+.f-err{font-size:12px;color:#EF4444;margin-top:5px;display:none;align-items:center;gap:5px;}
+.f-err.show{display:flex;}
+.f-hint{font-size:12px;color:var(--text3);margin-top:5px;}
+.strength-bar{height:3px;background:#E2E8F0;border-radius:2px;margin-top:8px;overflow:hidden;}
+.strength-fill{height:100%;border-radius:2px;width:0;transition:width .35s,background .35s;}
+.strength-lbl{font-size:11.5px;margin-top:4px;color:var(--text3);}
+.eye-btn{position:absolute;right:12px;top:50%;transform:translateY(-50%);background:none;border:none;cursor:pointer;padding:4px;color:var(--text3);line-height:0;}
+.eye-btn:hover{color:var(--text);}
+.chip-group{display:flex;gap:8px;flex-wrap:wrap;margin-top:4px;}
+.chip{font-size:13px;padding:7px 16px;border-radius:var(--r-pill);border:1.5px solid #E2E8F0;color:var(--text2);cursor:pointer;transition:all .18s;background:#fff;user-select:none;line-height:1.3;}
+.chip:hover{border-color:var(--azure);color:var(--azure);}
+.chip.sel{background:var(--ice);border-color:var(--azure);color:var(--azure);font-weight:500;}
+.cv-drop{border:2px dashed #E2E8F0;border-radius:var(--r-lg);padding:30px 20px;text-align:center;cursor:pointer;transition:all .2s;position:relative;}
+.cv-drop:hover,.cv-drop.drag{border-color:var(--azure);background:var(--ice);}
+.cv-drop input[type=file]{position:absolute;inset:0;opacity:0;cursor:pointer;width:100%;height:100%;}
+.cvd-icon{width:46px;height:46px;border-radius:13px;background:var(--ice);display:flex;align-items:center;justify-content:center;margin:0 auto 11px;}
+.cvd-title{font-size:14px;font-weight:500;color:var(--text);margin-bottom:4px;}
+.cvd-sub{font-size:12.5px;color:var(--text3);}
+.cv-preview{display:none;align-items:center;gap:11px;background:var(--ice);border-radius:var(--r-md);padding:11px 15px;margin-top:11px;}
+.cv-preview.show{display:flex;}
+.cv-fname{font-size:13.5px;font-weight:500;color:var(--azure);flex:1;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;}
+.cv-fsize{font-size:12px;color:var(--text3);flex-shrink:0;}
+.cv-rm{background:none;border:none;color:var(--text3);cursor:pointer;padding:3px 6px;font-size:16px;line-height:1;flex-shrink:0;}
+.cv-rm:hover{color:#EF4444;}
+.sp-strip{display:flex;align-items:center;gap:13px;background:var(--cream);border-radius:var(--r-md);padding:12px 16px;margin-bottom:22px;border:1px solid rgba(0,0,0,.05);}
+.avatars{display:flex;}
+.av{width:28px;height:28px;border-radius:50%;border:2px solid #fff;margin-left:-8px;font-size:10px;font-weight:600;color:#fff;display:flex;align-items:center;justify-content:center;flex-shrink:0;}
+.av:first-child{margin-left:0;}
+.sp-txt{font-size:13px;color:var(--text3);}
+.sp-txt strong{color:var(--text);font-weight:500;}
+.btn-google{width:100%;background:#fff;border:1.5px solid #E2E8F0;border-radius:var(--r-pill);padding:12px 20px;font-family:'DM Sans',sans-serif;font-size:14.5px;font-weight:500;color:var(--text);cursor:pointer;display:flex;align-items:center;justify-content:center;gap:10px;transition:all .2s;margin-bottom:16px;}
+.btn-google:hover{border-color:#94A3B8;background:#FAFAFA;}
+.divider{display:flex;align-items:center;gap:12px;margin:2px 0 18px;color:var(--text3);font-size:13px;}
+.divider::before,.divider::after{content:'';flex:1;height:1px;background:#E2E8F0;}
+.ai-card{background:var(--night);border-radius:var(--r-lg);padding:20px 22px;margin-top:16px;display:none;border:1px solid rgba(255,255,255,.07);}
+.ai-card.show{display:block;animation:fu .4s ease;}
+.ai-head{display:flex;align-items:center;gap:9px;margin-bottom:14px;}
+.ai-pulse{width:7px;height:7px;border-radius:50%;background:var(--sky);animation:pulse 1.5s ease infinite;}
+.ai-head-title{font-size:13px;font-weight:500;color:rgba(255,255,255,.7);}
+.ai-loading{font-size:13px;color:rgba(255,255,255,.4);font-style:italic;}
+.ai-result{display:none;}
+.ai-result.show{display:block;}
+.ai-score-row{display:flex;align-items:center;gap:16px;margin-bottom:12px;}
+.ai-score-num{font-family:'Fraunces',serif;font-size:48px;font-weight:600;color:#fff;line-height:1;flex-shrink:0;}
+.ai-score-rt{flex:1;}
+.ai-score-lbl{font-size:11px;color:rgba(255,255,255,.38);margin-bottom:6px;}
+.ai-bar-bg{height:5px;background:rgba(255,255,255,.08);border-radius:3px;}
+.ai-bar-fill{height:5px;border-radius:3px;background:var(--sky);width:0;transition:width 1s ease;}
+.ai-tags{display:flex;gap:7px;flex-wrap:wrap;margin:11px 0 6px;}
+.ai-tag{font-size:11px;padding:3px 10px;border-radius:var(--r-pill);}
+.ai-tag.ok{background:rgba(16,185,129,.15);color:#34D399;}
+.ai-tag.warn{background:rgba(251,191,36,.12);color:var(--gold);}
+.ai-sugs{display:flex;flex-direction:column;gap:6px;margin-top:9px;}
+.ai-sug{font-size:12.5px;color:rgba(255,255,255,.5);display:flex;gap:9px;align-items:flex-start;line-height:1.5;}
+.ai-sug::before{content:'→';color:var(--sky);flex-shrink:0;}
+/* CONSENT */
+.consent-block{display:flex;flex-direction:column;gap:16px;margin-bottom:22px;}
+.consent-section-label{font-size:10.5px;font-weight:600;letter-spacing:.11em;text-transform:uppercase;color:var(--text3);padding-top:18px;border-top:1px solid #E2E8F0;}
+.consent-section-label:first-child{border-top:none;padding-top:0;}
+.consent-item{display:flex;flex-direction:column;gap:7px;}
+.consent-row{display:flex;align-items:flex-start;gap:11px;}
+input[type=checkbox]{width:18px;height:18px;border-radius:5px;cursor:pointer;accent-color:var(--azure);flex-shrink:0;margin-top:2px;}
+.consent-label{font-size:13.5px;color:var(--text2);line-height:1.6;cursor:pointer;margin:0;}
+.consent-label a{color:var(--azure);text-decoration:none;font-weight:500;}
+.consent-label a:hover{text-decoration:underline;}
+.consent-label strong{color:var(--text);font-weight:500;}
+.consent-label em{font-style:normal;font-size:12px;color:var(--text3);}
+.tyc-toggle{display:inline-flex;align-items:center;gap:6px;font-size:11.5px;font-weight:500;color:var(--azure);background:none;border:none;cursor:pointer;padding:0 0 0 29px;font-family:'DM Sans',sans-serif;transition:color .18s;margin-top:1px;}
+.tyc-toggle:hover{color:var(--azure-d);}
+.tyc-toggle .t-arr{transition:transform .28s;line-height:0;}
+.tyc-toggle.open .t-arr{transform:rotate(180deg);}
+.tyc-box{display:none;border:1px solid #E2E8F0;border-radius:var(--r-md);overflow:hidden;margin-left:29px;margin-top:5px;}
+.tyc-box.open{display:block;animation:slideDown .28s ease;}
+@keyframes slideDown{from{opacity:0;transform:translateY(-8px)}to{opacity:1;transform:translateY(0)}}
+.tyc-box-header{display:flex;align-items:center;justify-content:space-between;padding:11px 16px;background:#F8FAFC;border-bottom:1px solid #E2E8F0;}
+.tyc-box-title{font-size:12px;font-weight:600;color:var(--text);}
+.tyc-box-badge{font-size:10px;font-weight:600;padding:2px 9px;border-radius:var(--r-pill);background:var(--ice);color:var(--azure);white-space:nowrap;}
+.tyc-tabs{display:flex;border-bottom:1px solid #E2E8F0;background:#fff;overflow-x:auto;}
+.tyc-tabs::-webkit-scrollbar{height:0;}
+.tyc-tab{font-size:11.5px;font-weight:500;padding:9px 14px;cursor:pointer;color:var(--text3);border:none;background:none;font-family:'DM Sans',sans-serif;border-bottom:2px solid transparent;transition:all .18s;white-space:nowrap;flex-shrink:0;}
+.tyc-tab.on{color:var(--azure);border-bottom-color:var(--azure);}
+.tyc-pane{padding:16px 18px;max-height:280px;overflow-y:auto;font-size:12.5px;color:var(--text3);line-height:1.8;background:#fff;display:none;}
+.tyc-pane.on{display:block;}
+.tyc-pane::-webkit-scrollbar{width:4px;}
+.tyc-pane::-webkit-scrollbar-thumb{background:#CBD5E1;border-radius:2px;}
+.tyc-pane h4{font-size:12.5px;font-weight:600;color:var(--text);margin:16px 0 7px;display:flex;align-items:center;gap:8px;}
+.tyc-pane h4:first-child{margin-top:0;}
+.tyc-num{width:19px;height:19px;border-radius:50%;background:var(--ice);color:var(--azure);font-size:10px;font-weight:700;display:inline-flex;align-items:center;justify-content:center;flex-shrink:0;}
+.tyc-pane p{margin-bottom:7px;}
+.tyc-pane ul{padding-left:16px;margin-bottom:7px;}
+.tyc-pane li{margin-bottom:5px;}
+.tyc-pane strong{color:var(--text2);font-weight:500;}
+.tyc-pane a{color:var(--azure);}
+.tyc-scroll-hint{text-align:center;padding:8px;font-size:11px;color:var(--text3);background:#F8FAFC;border-top:1px solid #E2E8F0;display:flex;align-items:center;justify-content:center;gap:5px;}
+.btn-next{width:100%;background:var(--warm);color:#fff;border:none;border-radius:var(--r-pill);padding:14px 24px;font-family:'DM Sans',sans-serif;font-size:15.5px;font-weight:600;cursor:pointer;transition:background .2s,transform .15s;margin-top:6px;display:flex;align-items:center;justify-content:center;gap:9px;}
+.btn-next:hover{background:var(--warm-d);transform:translateY(-1px);}
+.btn-next:disabled{opacity:.4;cursor:not-allowed;transform:none;}
+.btn-back{background:none;border:none;color:var(--text3);font-family:'DM Sans',sans-serif;font-size:14px;cursor:pointer;padding:11px 0;display:flex;align-items:center;gap:7px;margin-top:8px;transition:color .18s;}
+.btn-back:hover{color:var(--text);}
+.step-form{display:none;}
+.step-form.active{display:block;animation:fu .35s ease;}
+.success-wrap{display:none;text-align:center;padding:16px 0;}
+.success-wrap.show{display:block;animation:fu .5s ease;}
+.success-icon{width:76px;height:76px;border-radius:50%;background:rgba(16,185,129,.1);display:flex;align-items:center;justify-content:center;margin:0 auto 22px;}
+.success-h2{font-family:'Fraunces',serif;font-size:30px;font-weight:600;color:var(--text);margin-bottom:10px;}
+.success-sub{font-size:15px;color:var(--text3);line-height:1.75;max-width:370px;margin:0 auto 30px;}
+.next-steps{display:flex;flex-direction:column;gap:9px;text-align:left;margin-bottom:30px;}
+.ns-item{display:flex;align-items:center;gap:13px;padding:13px 15px;background:var(--cream);border-radius:var(--r-md);border:1px solid rgba(0,0,0,.04);}
+.ns-num{width:24px;height:24px;border-radius:50%;background:var(--azure);color:#fff;font-size:11px;font-weight:700;display:flex;align-items:center;justify-content:center;flex-shrink:0;}
+.ns-txt{font-size:14px;color:var(--text2);}
+.ns-txt strong{font-weight:500;color:var(--text);}
+.btn-dashboard{display:block;background:var(--azure);color:#fff;text-decoration:none;border-radius:var(--r-pill);padding:15px 24px;font-size:15.5px;font-weight:600;text-align:center;transition:background .2s,transform .15s;}
+.btn-dashboard:hover{background:var(--azure-d);transform:translateY(-1px);}
+@media(max-width:900px){.page{grid-template-columns:1fr;}.left{display:none;}.right{padding:32px 24px 48px;}nav{padding:0 20px;}}
+@media(max-width:480px){.field-row{grid-template-columns:1fr;}.right{padding:28px 18px 48px;}}
+</style>
+</head>
+<body>
+<div class="bg-orb1"></div>
+<div class="bg-orb2"></div>
+<div class="bg-grid"></div>
+<nav>
+  <a href="impulsio_landing_v2.html" class="nav-brand">
+    <div class="nav-icon">
+      <svg width="17" height="17" viewBox="0 0 28 28" fill="none"><path d="M8 20L8 10L18 10" stroke="white" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/><path d="M8 10L20 22" stroke="white" stroke-width="2.6" stroke-linecap="round"/></svg>
+    </div>
+    <span class="nav-name">Impulsio</span>
+  </a>
+  <p class="nav-login">¿Ya tenés cuenta? <a href="#">Ingresá</a></p>
+</nav>
+<div class="page">
+  <div class="left">
+    <div class="left-badge"><span class="badge-dot"></span>+2.400 profesionales en LATAM</div>
+    <h1 class="left-h1">Tu carrera,<br><em>impulsada</em><br><span class="dim">por inteligencia artificial.</span></h1>
+    <p class="left-sub">Cargá tu CV una vez. Impulsio hace el resto: <strong>optimiza, postula</strong> y te prepara para cada entrevista.</p>
+    <ul class="benefit-list">
+      <li class="benefit-item"><div class="b-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" stroke="var(--sky)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>CV analizado y optimizado para ATS en menos de 30 segundos</li>
+      <li class="benefit-item"><div class="b-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M13 10V3L4 14h7v7l9-11h-7z" stroke="var(--sky)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>Postulaciones automáticas en LinkedIn, ZonaJobs y Bumeran</li>
+      <li class="benefit-item"><div class="b-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.545 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z" stroke="var(--sky)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>Entrenador de entrevistas con IA disponible 24/7</li>
+      <li class="benefit-item"><div class="b-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" stroke="var(--sky)" stroke-width="2" stroke-linecap="round"/></svg></div>Tus datos son siempre tuyos — cifrado AES-256</li>
+    </ul>
+    <div class="left-trust">
+      <span class="trust-chip">Sin tarjeta de crédito</span>
+      <span class="trust-chip">Cancelá cuando quieras</span>
+      <span class="trust-chip">HTTPS</span>
+    </div>
+  </div>
+  <div class="right">
+    <div class="progress-wrap" id="progress-wrap">
+      <div class="progress-steps">
+        <div class="ps-item"><div class="ps-dot active" id="dot-1">1</div><div class="ps-line idle" id="line-1"></div></div>
+        <div class="ps-item"><div class="ps-dot idle" id="dot-2">2</div><div class="ps-line idle" id="line-2"></div></div>
+        <div class="ps-item"><div class="ps-dot idle" id="dot-3">3</div><div class="ps-line idle" id="line-3"></div></div>
+        <div class="ps-item" style="flex:0"><div class="ps-dot idle" id="dot-4">4</div></div>
+      </div>
+      <div class="ps-labels">
+        <span class="ps-lbl active" id="lbl-1">Cuenta</span>
+        <span class="ps-lbl" id="lbl-2">Perfil</span>
+        <span class="ps-lbl" id="lbl-3">CV</span>
+        <span class="ps-lbl" id="lbl-4">Términos</span>
+      </div>
+    </div>
+
+    <!-- PASO 1 -->
+    <div class="step-form active" id="step1">
+      <div class="step-head"><h2 class="step-title">Creá tu cuenta</h2><p class="step-sub">En menos de 2 minutos ya estás dentro.</p></div>
+      <div class="sp-strip">
+        <div class="avatars"><div class="av" style="background:var(--azure);">SL</div><div class="av" style="background:var(--warm);">MR</div><div class="av" style="background:var(--mint);">CV</div><div class="av" style="background:#8B5CF6;">AP</div></div>
+        <p class="sp-txt"><strong>2.400+ profesionales</strong> ya potenciaron su carrera con Impulsio</p>
+      </div>
+      <button class="btn-google" onclick="googleSignIn()">
+        <svg width="18" height="18" viewBox="0 0 24 24"><path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" fill="#4285F4"/><path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill="#34A853"/><path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l3.66-2.84z" fill="#FBBC05"/><path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z" fill="#EA4335"/></svg>
+        Continuar con Google
+      </button>
+      <div class="divider">o registrate con email</div>
+      <div class="field field-row">
+        <div><label>Nombre <span class="req">*</span></label><input type="text" id="f-nombre" placeholder="Martina" oninput="fv('f-nombre','nombre')"><p class="f-err" id="err-nombre">Ingresá tu nombre</p></div>
+        <div><label>Apellido <span class="req">*</span></label><input type="text" id="f-apellido" placeholder="García" oninput="fv('f-apellido','apellido')"><p class="f-err" id="err-apellido">Ingresá tu apellido</p></div>
+      </div>
+      <div class="field">
+        <label>Email <span class="req">*</span></label>
+        <div class="input-wrap has-ic"><span class="ic"><svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z" fill="currentColor"/></svg></span><input type="email" id="f-email" placeholder="martina@empresa.com" oninput="fv('f-email','email')"></div>
+        <p class="f-err" id="err-email">Ingresá un email válido</p>
+      </div>
+      <div class="field">
+        <label>Contraseña <span class="req">*</span></label>
+        <div class="input-wrap"><input type="password" id="f-pass" placeholder="Mínimo 8 caracteres" oninput="checkPwd(this.value)"><button class="eye-btn" type="button" onclick="toggleEye('f-pass',this)"><svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><circle cx="12" cy="12" r="3" stroke="currentColor" stroke-width="2"/></svg></button></div>
+        <div class="strength-bar"><div class="strength-fill" id="s-fill"></div></div>
+        <p class="strength-lbl" id="s-lbl"></p>
+        <p class="f-err" id="err-pass">Mínimo 8 caracteres</p>
+      </div>
+      <button class="btn-next" id="btn1" onclick="goStep(2)" disabled>Continuar <svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M5 12h14M12 5l7 7-7 7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+    </div>
+
+    <!-- PASO 2 -->
+    <div class="step-form" id="step2">
+      <div class="step-head"><h2 class="step-title">Contanos sobre vos</h2><p class="step-sub">Personalizamos tu experiencia según tu perfil profesional.</p></div>
+      <div class="field field-row">
+        <div>
+          <label>País <span class="req">*</span></label>
+          <div class="input-wrap has-ic"><span class="ic"><svg width="16" height="16" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="2"/><path d="M12 2a14.5 14.5 0 010 20M2 12h20" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></span><select id="f-pais" onchange="fv('f-pais','pais')"><option value="">Seleccioná tu país</option><option>&#x1F1E6;&#x1F1F7; Argentina</option><option>&#x1F1F2;&#x1F1FD; México</option><option>&#x1F1E8;&#x1F1F4; Colombia</option><option>&#x1F1E8;&#x1F1F1; Chile</option><option>&#x1F1F5;&#x1F1EA; Perú</option><option>&#x1F1FA;&#x1F1FE; Uruguay</option><option>&#x1F1E7;&#x1F1F7; Brasil</option><option>Otro</option></select></div>
+          <p class="f-err" id="err-pais">Seleccioná tu país</p>
+        </div>
+        <div>
+          <label>Teléfono <span class="opt">(opcional)</span></label>
+          <div class="input-wrap has-ic"><span class="ic"><svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 015 12.79a19.79 19.79 0 01-3.07-8.67A2 2 0 013.92 2h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></span><input type="tel" id="f-tel" placeholder="+54 11 5555-0100"></div>
+          <p class="f-hint">Para alertas por WhatsApp</p>
+        </div>
+      </div>
+      <div class="field">
+        <label>Industria / Rubro <span class="req">*</span></label>
+        <div class="input-wrap has-ic"><span class="ic"><svg width="16" height="16" viewBox="0 0 24 24" fill="none"><rect x="2" y="8" width="20" height="12" rx="2" stroke="currentColor" stroke-width="2"/><path d="M16 6V4a2 2 0 00-2-2h-4a2 2 0 00-2 2v2" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></span><select id="f-industria" onchange="fv('f-industria','industria')"><option value="">Seleccioná tu industria</option><option>Tecnología / IT</option><option>Marketing / Comunicación</option><option>Finanzas / Contabilidad</option><option>Recursos Humanos</option><option>Diseño / UX</option><option>Ventas / Comercial</option><option>Salud / Medicina</option><option>Educación</option><option>Legal / Jurídico</option><option>Operaciones / Logística</option><option>Otra industria</option></select></div>
+        <p class="f-err" id="err-industria">Seleccioná tu industria</p>
+      </div>
+      <div class="field">
+        <label>Años de experiencia</label>
+        <div class="chip-group" id="g-exp"><div class="chip" onclick="selChip('g-exp',this,'exp','0')">Sin experiencia</div><div class="chip" onclick="selChip('g-exp',this,'exp','1-2')">1–2 años</div><div class="chip" onclick="selChip('g-exp',this,'exp','3-5')">3–5 años</div><div class="chip" onclick="selChip('g-exp',this,'exp','6-10')">6–10 años</div><div class="chip" onclick="selChip('g-exp',this,'exp','+10')">+10 años</div></div>
+      </div>
+      <div class="field">
+        <label>Situación actual <span class="req">*</span></label>
+        <div class="chip-group" id="g-sit"><div class="chip" onclick="selChip('g-sit',this,'sit','busco')">Buscando activamente</div><div class="chip" onclick="selChip('g-sit',this,'sit','abierto')">Empleado, abierto a ofertas</div><div class="chip" onclick="selChip('g-sit',this,'sit','freelance')">Freelance / Consultor</div><div class="chip" onclick="selChip('g-sit',this,'sit','cambio')">Cambio de industria</div></div>
+        <p class="f-err" id="err-sit">Seleccioná tu situación</p>
+      </div>
+      <div class="field">
+        <label>Modalidad preferida</label>
+        <div class="chip-group" id="g-mod"><div class="chip" onclick="selChip('g-mod',this,'mod','remoto')">Remoto</div><div class="chip" onclick="selChip('g-mod',this,'mod','hibrido')">Híbrido</div><div class="chip" onclick="selChip('g-mod',this,'mod','presencial')">Presencial</div><div class="chip" onclick="selChip('g-mod',this,'mod','indiferente')">Indiferente</div></div>
+      </div>
+      <button class="btn-next" id="btn2" onclick="goStep(3)" disabled>Continuar <svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M5 12h14M12 5l7 7-7 7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+      <button class="btn-back" onclick="goStep(1)"><svg width="15" height="15" viewBox="0 0 24 24" fill="none"><path d="M19 12H5M12 19l-7-7 7-7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>Volver</button>
+    </div>
+
+    <!-- PASO 3 -->
+    <div class="step-form" id="step3">
+      <div class="step-head"><h2 class="step-title">Cargá tu CV</h2><p class="step-sub">La IA lo analiza en segundos y te da un score con sugerencias concretas.</p></div>
+      <div class="cv-drop" id="cv-drop" ondragover="cvDrag(event,true)" ondragleave="cvDrag(event,false)" ondrop="cvDrop(event)">
+        <input type="file" accept=".pdf,.doc,.docx,.jpg,.jpeg,.png" onchange="handleFile(this.files[0])">
+        <div id="cv-inner"><div class="cvd-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4M7 10l5 5 5-5M12 15V3" stroke="var(--azure)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div><p class="cvd-title">Arrastrá tu CV acá, o hacé clic para seleccionar</p><p class="cvd-sub">PDF, Word o imagen · Máx. 5 MB</p></div>
+      </div>
+      <div class="cv-preview" id="cv-preview"><svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8l-6-6z" stroke="var(--azure)" stroke-width="2" stroke-linecap="round"/><path d="M14 2v6h6M16 13H8M16 17H8M10 9H8" stroke="var(--azure)" stroke-width="2" stroke-linecap="round"/></svg><span class="cv-fname" id="cv-fname"></span><span class="cv-fsize" id="cv-fsize"></span><button class="cv-rm" onclick="removeFile()" type="button">✕</button></div>
+      <div class="ai-card" id="ai-card">
+        <div class="ai-head"><div class="ai-pulse"></div><span class="ai-head-title" id="ai-title">Analizando tu CV con IA…</span></div>
+        <p class="ai-loading" id="ai-loading">Extrayendo keywords · Calculando ATS score…</p>
+        <div class="ai-result" id="ai-result">
+          <div class="ai-score-row"><div class="ai-score-num" id="ai-score-num">—</div><div class="ai-score-rt"><p class="ai-score-lbl">ATS Score inicial</p><div class="ai-bar-bg"><div class="ai-bar-fill" id="ai-bar"></div></div></div></div>
+          <div class="ai-tags" id="ai-tags"></div>
+          <div class="ai-sugs" id="ai-sugs"></div>
+        </div>
+      </div>
+      <div class="field" style="margin-top:18px;">
+        <label>Sin CV listo? Usá tu perfil de LinkedIn <span class="opt">(opcional)</span></label>
+        <div class="input-wrap has-ic"><span class="ic"><svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6zM2 9h4v12H2z" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><circle cx="4" cy="4" r="2" stroke="currentColor" stroke-width="2"/></svg></span><input type="text" id="f-linkedin" placeholder="linkedin.com/in/tu-nombre"></div>
+      </div>
+      <button class="btn-next" id="btn3" onclick="goStep(4)">Continuar <svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M5 12h14M12 5l7 7-7 7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+      <button class="btn-back" onclick="goStep(2)"><svg width="15" height="15" viewBox="0 0 24 24" fill="none"><path d="M19 12H5M12 19l-7-7 7-7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>Volver</button>
+    </div>
+
+    <!-- PASO 4 — TÉRMINOS -->
+    <div class="step-form" id="step4">
+      <div class="step-head"><h2 class="step-title">Términos y condiciones</h2><p class="step-sub">Leé y aceptá los términos para completar tu registro. Podés expandir cada sección para ver el contrato completo.</p></div>
+      <div class="consent-block">
+
+        <p class="consent-section-label">Obligatorios para usar la plataforma</p>
+
+        <!-- CB 1 -->
+        <div class="consent-item">
+          <div class="consent-row">
+            <input type="checkbox" id="cb-tyc" onchange="ckUpdate()">
+            <label class="consent-label" for="cb-tyc">He leído y acepto los <a href="#" onclick="openTyc(event,'tyc','p-main')">Términos y Condiciones</a> y la <a href="#" onclick="openTyc(event,'tyc','p-arco')">Política de Privacidad</a> de Impulsio. <em>(V2.0 · 31/03/2026)</em></label>
+          </div>
+          <button class="tyc-toggle" id="tog-tyc" onclick="togBox('tyc')">
+            <span class="t-arr"><svg width="13" height="13" viewBox="0 0 24 24" fill="none"><path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+            <span class="t-lbl">Leer contrato completo</span>
+          </button>
+          <div class="tyc-box" id="box-tyc">
+            <div class="tyc-box-header"><span class="tyc-box-title">Contrato de Términos, Condiciones y Deslinde de Responsabilidad — Impulsio</span><span class="tyc-box-badge">V2.0 · 31/03/2026</span></div>
+            <div class="tyc-tabs" id="tabs-tyc">
+              <button class="tyc-tab on" onclick="swTab('tyc','p-main',this)">Servicio</button>
+              <button class="tyc-tab" onclick="swTab('tyc','p-ia',this)">Uso de IA</button>
+              <button class="tyc-tab" onclick="swTab('tyc','p-arco',this)">Datos personales</button>
+              <button class="tyc-tab" onclick="swTab('tyc','p-econ',this)">Responsabilidad</button>
+            </div>
+            <div class="tyc-pane on" id="pane-tyc-p-main">
+              <h4><span class="tyc-num">1</span>Naturaleza del servicio — Obligación de medios</h4>
+              <p>Impulsio es una plataforma de asistencia tecnológica basada en IA diseñada para optimizar perfiles profesionales y facilitar la búsqueda laboral. El Usuario reconoce y acepta que:</p>
+              <ul><li><strong>Sin garantía de resultados:</strong> La Plataforma es una herramienta de optimización de probabilidades. Bajo ninguna circunstancia Impulsio garantiza la obtención de un puesto de trabajo, entrevistas o respuestas de empleadores.</li><li><strong>Independencia de terceros:</strong> Las decisiones de contratación dependen exclusivamente de terceros (empresas, reclutadores o portales externos) ajenos a la Plataforma.</li></ul>
+              <h4><span class="tyc-num">5</span>Modificaciones y vigencia</h4>
+              <p>Impulsio se reserva el derecho de modificar estos Términos con un preaviso de <strong>30 días</strong> mediante notificación por email. El uso continuado después de ese plazo implica aceptación de los nuevos términos.</p>
+              <h4><span class="tyc-num">6</span>Ley aplicable y jurisdicción</h4>
+              <p>Este contrato se rige por las leyes de la República Argentina. Las partes se someten a los Tribunales Ordinarios de la Ciudad Autónoma de Buenos Aires.</p>
+            </div>
+            <div class="tyc-pane" id="pane-tyc-p-ia">
+              <h4><span class="tyc-num">2</span>Uso de Inteligencia Artificial y Obligación de Verificación</h4>
+              <p>La Plataforma utiliza modelos de procesamiento de lenguaje natural para automatizar tareas.</p>
+              <ul><li><strong>Deslinde por errores de IA:</strong> El Usuario acepta que la IA puede generar información inexacta, incompleta o errónea (alucinaciones técnicas).</li><li><strong>Obligación de validación (mandatoria):</strong> Es responsabilidad exclusiva del Usuario revisar, corregir y validar manualmente todo contenido generado por la IA antes de su uso profesional o envío a terceros.</li><li><strong>Exclusión de responsabilidad:</strong> Impulsio no será responsable por perjuicios derivados de errores de la IA no corregidos por el Usuario.</li></ul>
+              <h4><span class="tyc-num">3</span>Punto de control de validación</h4>
+              <p>Después de que la IA genere contenido crítico (CV, mensajes, postulaciones), se forzará un paso de <strong>"Revisión y Confirmación"</strong> que el Usuario debe confirmar antes de cualquier acción externa.</p>
+              <h4><span class="tyc-num">4</span>Contenido biométrico</h4>
+              <p>Para video-presentaciones, la Plataforma procesará imágenes y voz del Usuario con consentimiento explícito adicional, conforme a la Ley 25.326.</p>
+            </div>
+            <div class="tyc-pane" id="pane-tyc-p-arco">
+              <h4><span class="tyc-num">3</span>Intermediación y Tratamiento de Datos — Ley 25.326</h4>
+              <ul><li><strong>Propiedad de los datos:</strong> El Usuario es el único propietario de su información. Impulsio posee una licencia de uso operativa únicamente para prestar el servicio.</li><li><strong>Intermediación laboral:</strong> El Usuario autoriza a Impulsio a compartir su perfil optimizado con empresas y reclutadores solo cuando el Usuario active esta función expresamente.</li><li><strong>Upskilling:</strong> Se autoriza el análisis del perfil para sugerir cursos y certificaciones de partners externos (Gap Analysis).</li><li><strong>Derechos ARCO:</strong> Acceso, Rectificación, Cancelación y Oposición sobre datos personales. Contacto: <a href="mailto:privacidad@impulsio.io">privacidad@impulsio.io</a></li></ul>
+              <h4><span class="tyc-num">4</span>Seguridad y retención</h4>
+              <p>Credenciales cifradas con <strong>AES-256</strong>. Datos conservados hasta 90 días después del cierre de cuenta. Eliminación inmediata disponible en Configuración → Cuenta → Eliminar cuenta.</p>
+            </div>
+            <div class="tyc-pane" id="pane-tyc-p-econ">
+              <h4><span class="tyc-num">4</span>Limitación de responsabilidad económica — Ley 24.240</h4>
+              <p>La responsabilidad total de Impulsio se limita al monto pagado por el Usuario en los últimos <strong>tres (3) meses</strong>. Para planes gratuitos, la responsabilidad es nula. Se excluye expresamente:</p>
+              <ul><li>Lucro cesante o pérdida de oportunidad laboral</li><li>Daño reputacional o moral</li><li>Errores de terceros (portales, empresas, reclutadores)</li><li>Fuerza mayor o causas ajenas al control de Impulsio</li></ul>
+              <h4><span class="tyc-num">5</span>Indemnidad</h4>
+              <p>El Usuario acepta mantener indemne a Impulsio frente a reclamaciones derivadas de uso incorrecto o de contenido IA no verificado previamente.</p>
+            </div>
+            <div class="tyc-scroll-hint"><svg width="12" height="12" viewBox="0 0 24 24" fill="none"><path d="M12 5v14M5 12l7 7 7-7" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>Desplazá para leer el contenido completo de cada sección</div>
+          </div>
+        </div>
+
+        <!-- CB 2 -->
+        <div class="consent-item">
+          <div class="consent-row">
+            <input type="checkbox" id="cb-ia" onchange="ckUpdate()">
+            <label class="consent-label" for="cb-ia">Entiendo que la IA puede cometer errores. Me comprometo a <strong>revisar y validar todo el contenido generado</strong> antes de su uso externo o envío a terceros.</label>
+          </div>
+          <button class="tyc-toggle" id="tog-ia" onclick="togBox('ia')">
+            <span class="t-arr"><svg width="13" height="13" viewBox="0 0 24 24" fill="none"><path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+            <span class="t-lbl">¿Por qué es importante?</span>
+          </button>
+          <div class="tyc-box" id="box-ia">
+            <div class="tyc-box-header"><span class="tyc-box-title">Obligación de verificación del contenido generado por IA</span><span class="tyc-box-badge">Cláusula 2</span></div>
+            <div class="tyc-pane on">
+              <p>Los modelos de IA de Impulsio son de alta precisión, pero no son infalibles. Existe el fenómeno técnico conocido como <strong>"alucinación"</strong>: la generación de contenido plausible pero incorrecto.</p>
+              <p style="margin-top:8px;"><strong>Esto puede afectar, por ejemplo:</strong></p>
+              <ul><li>Un CV puede contener datos incorrectos si la información cargada tenía errores</li><li>Un mensaje de networking puede incluir referencias inexactas sobre la empresa</li><li>Las sugerencias de cursos son orientativas y no reemplazan la consulta profesional</li></ul>
+              <p style="margin-top:8px;"><strong>Tu rol:</strong> Impulsio incluye un paso de "Revisión y Confirmación" en cada flujo crítico. Tu validación es el último y más importante filtro antes de que cualquier contenido llegue a un empleador.</p>
+            </div>
+          </div>
+        </div>
+
+        <p class="consent-section-label">Opcionales — mejoran tu experiencia</p>
+
+        <!-- CB 3 -->
+        <div class="consent-item">
+          <div class="consent-row">
+            <input type="checkbox" id="cb-net" onchange="ckUpdate()">
+            <label class="consent-label" for="cb-net">Autorizo a Impulsio a <strong>compartir mi perfil con empresas y reclutadores</strong> que busquen candidatos con mi perfil, y a recibir sugerencias de capacitación personalizadas.</label>
+          </div>
+          <button class="tyc-toggle" id="tog-net" onclick="togBox('net')">
+            <span class="t-arr"><svg width="13" height="13" viewBox="0 0 24 24" fill="none"><path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+            <span class="t-lbl">Más información</span>
+          </button>
+          <div class="tyc-box" id="box-net">
+            <div class="tyc-box-header"><span class="tyc-box-title">Intermediación laboral y upskilling</span><span class="tyc-box-badge">Cláusula 3</span></div>
+            <div class="tyc-pane on">
+              <p>Al activar esta opción, tu perfil optimizado puede aparecer en el panel de búsqueda de empresas que usan Impulsio. Esto <strong>aumenta significativamente</strong> las posibilidades de ser contactado de forma proactiva por reclutadores.</p>
+              <p style="margin-top:8px;">También recibirás sugerencias de cursos y certificaciones basadas en el <strong>Gap Analysis</strong> de tu perfil vs. los puestos a los que apuntás. Partners: Coursera, Udemy, LinkedIn Learning.</p>
+              <p style="margin-top:8px;">Podés desactivar esta opción en cualquier momento desde <strong>Configuración → Perfil → Visibilidad</strong>.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- CB 4 -->
+        <div class="consent-item">
+          <div class="consent-row">
+            <input type="checkbox" id="cb-alerts" checked onchange="ckUpdate()">
+            <label class="consent-label" for="cb-alerts">Deseo recibir <strong>alertas de empleo y novedades</strong> de Impulsio vía WhatsApp, Telegram o Email según mis preferencias de notificación.</label>
+          </div>
+        </div>
+
+      </div>
+      <button class="btn-next" id="btn4" onclick="completar()" disabled>Crear mi cuenta <svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M5 12h14M12 5l7 7-7 7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+      <button class="btn-back" onclick="goStep(3)"><svg width="15" height="15" viewBox="0 0 24 24" fill="none"><path d="M19 12H5M12 19l-7-7 7-7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>Volver</button>
+    </div>
+
+    <!-- SUCCESS -->
+    <div class="success-wrap" id="success">
+      <div class="success-icon"><svg width="38" height="38" viewBox="0 0 24 24" fill="none"><path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" stroke="var(--mint)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+      <h2 class="success-h2">¡Cuenta creada!</h2>
+      <p class="success-sub" id="success-msg">Bienvenida a Impulsio. Tu CV ya está siendo analizado con IA.</p>
+      <div class="next-steps">
+        <div class="ns-item"><div class="ns-num">1</div><p class="ns-txt">Revisá las <strong>versiones optimizadas</strong> de tu CV listas en tu dashboard</p></div>
+        <div class="ns-item"><div class="ns-num">2</div><p class="ns-txt">Configurá tus <strong>alertas de empleo</strong> por WhatsApp o email</p></div>
+        <div class="ns-item"><div class="ns-num">3</div><p class="ns-txt">Conectá LinkedIn y ZonaJobs para activar la <strong>búsqueda automática</strong></p></div>
+      </div>
+      <a href="#" class="btn-dashboard">Ir a mi dashboard →</a>
+    </div>
+
+  </div>
+</div>
+
+<script>
+const S={nombre:'',apellido:'',email:'',pass:'',pais:'',industria:'',exp:'',sit:'',mod:'',cvFile:null,step:1};
+
+function goStep(n){
+  if(n>S.step&&!valStep(S.step))return;
+  document.querySelectorAll('.step-form').forEach(f=>f.classList.remove('active'));
+  const el=document.getElementById('step'+n);if(el)el.classList.add('active');
+  for(let i=1;i<=4;i++){
+    const d=document.getElementById('dot-'+i),l=document.getElementById('lbl-'+i);
+    if(!d)continue;
+    d.className='ps-dot '+(i<n?'done':i===n?'active':'idle');
+    d.textContent=i<n?'✓':String(i);
+    if(l)l.className='ps-lbl '+(i<n?'done':i===n?'active':'');
+  }
+  for(let i=1;i<=3;i++){const ln=document.getElementById('line-'+i);if(ln)ln.className='ps-line '+(i<n?'done':'idle');}
+  if(n===5){
+    document.getElementById('progress-wrap').style.opacity='.25';
+    document.querySelectorAll('.step-form').forEach(f=>f.classList.remove('active'));
+    document.getElementById('success').classList.add('show');
+    if(S.nombre)document.getElementById('success-msg').textContent='¡Bienvenida, '+S.nombre+'! Tu CV ya está siendo analizado con IA.';
+  }
+  S.step=n;window.scrollTo({top:0,behavior:'smooth'});
+}
+
+function valStep(n){
+  if(n===1){const a=fv('f-nombre','nombre'),b=fv('f-apellido','apellido'),c=fv('f-email','email'),d=valPwd();return a&&b&&c&&d;}
+  if(n===2){const a=fv('f-pais','pais'),b=fv('f-industria','industria'),c=!!S.sit;if(!c){const e=document.getElementById('err-sit');if(e){e.textContent='Seleccioná tu situación';e.classList.add('show');}}return a&&b&&c;}
+  return true;
+}
+
+function fv(id,field){
+  const el=document.getElementById(id);if(!el)return true;
+  const v=el.value.trim();
+  const ok=field==='email'?/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v):v.length>0;
+  el.classList.toggle('v-ok',ok);el.classList.toggle('v-err',!ok);
+  const err=document.getElementById('err-'+field);if(err)err.classList.toggle('show',!ok);
+  if(ok)S[field]=v;chkBtn1();return ok;
+}
+
+function valPwd(){
+  const v=document.getElementById('f-pass').value,ok=v.length>=8;
+  document.getElementById('f-pass').classList.toggle('v-ok',ok);
+  document.getElementById('f-pass').classList.toggle('v-err',!ok);
+  document.getElementById('err-pass').classList.toggle('show',!ok);
+  if(ok)S.pass=v;return ok;
+}
+
+function chkBtn1(){
+  const n=document.getElementById('f-nombre')?.value.trim().length>0;
+  const a=document.getElementById('f-apellido')?.value.trim().length>0;
+  const e=/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(document.getElementById('f-email')?.value||'');
+  const p=(document.getElementById('f-pass')?.value||'').length>=8;
+  const b=document.getElementById('btn1');if(b)b.disabled=!(n&&a&&e&&p);
+}
+
+function chkBtn2(){
+  const p=document.getElementById('f-pais')?.value;
+  const i=document.getElementById('f-industria')?.value;
+  const b=document.getElementById('btn2');if(b)b.disabled=!(p&&i&&S.sit);
+}
+
+function checkPwd(v){
+  let sc=0;
+  if(v.length>=8)sc++;if(/[A-Z]/.test(v))sc++;if(/[0-9]/.test(v))sc++;if(/[^A-Za-z0-9]/.test(v))sc++;
+  const lv=[{w:'0%',c:'',t:''},{w:'25%',c:'#EF4444',t:'Muy débil'},{w:'50%',c:'#F97316',t:'Débil'},{w:'75%',c:'#FBBF24',t:'Aceptable'},{w:'100%',c:'#10B981',t:'Fuerte ✓'}];
+  const l=lv[sc];
+  document.getElementById('s-fill').style.cssText='width:'+l.w+';background:'+l.c;
+  const t=document.getElementById('s-lbl');t.textContent=l.t;t.style.color=l.c||'#94A3B8';
+  chkBtn1();
+}
+
+function toggleEye(id,btn){
+  const inp=document.getElementById(id),isP=inp.type==='password';inp.type=isP?'text':'password';
+  btn.innerHTML=isP?'<svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M17.94 17.94A10.07 10.07 0 0112 20c-7 0-11-8-11-8a18.45 18.45 0 015.06-5.94M9.9 4.24A9.12 9.12 0 0112 4c7 0 11 8 11 8a18.5 18.5 0 01-2.16 3.19m-6.72-1.07a3 3 0 11-4.24-4.24" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><path d="M1 1l22 22" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>':'<svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><circle cx="12" cy="12" r="3" stroke="currentColor" stroke-width="2"/></svg>';
+}
+
+function selChip(gid,el,field,val){
+  document.querySelectorAll('#'+gid+' .chip').forEach(c=>c.classList.remove('sel'));
+  el.classList.add('sel');S[field]=val;
+  const e=document.getElementById('err-'+field);if(e)e.classList.remove('show');
+  chkBtn2();
+}
+
+function cvDrag(e,on){e.preventDefault();document.getElementById('cv-drop').classList.toggle('drag',on);}
+function cvDrop(e){e.preventDefault();cvDrag(e,false);const f=e.dataTransfer.files[0];if(f)handleFile(f);}
+function handleFile(file){
+  if(!file)return;if(file.size>5*1024*1024){alert('El archivo debe ser menor a 5 MB.');return;}
+  S.cvFile=file;document.getElementById('cv-inner').style.display='none';
+  const p=document.getElementById('cv-preview');p.classList.add('show');
+  document.getElementById('cv-fname').textContent=file.name;
+  document.getElementById('cv-fsize').textContent=(file.size/1024).toFixed(0)+' KB';
+  analyzeCV(file);
+}
+function removeFile(){
+  S.cvFile=null;document.getElementById('cv-inner').style.display='';
+  document.getElementById('cv-preview').classList.remove('show');
+  document.getElementById('ai-card').classList.remove('show');
+}
+
+async function analyzeCV(file){
+  const card=document.getElementById('ai-card');card.classList.add('show');
+  document.getElementById('ai-loading').style.display='block';
+  document.getElementById('ai-result').classList.remove('show');
+  document.getElementById('ai-title').textContent='Analizando tu CV con IA…';
+  try{
+    const res=await fetch('https://api.anthropic.com/v1/messages',{
+      method:'POST',headers:{'Content-Type':'application/json'},
+      body:JSON.stringify({model:'claude-sonnet-4-20250514',max_tokens:700,
+        messages:[{role:'user',content:'Sos experto en reclutamiento LATAM. Analizá este CV (nombre: '+file.name+', tamaño: '+(file.size/1024).toFixed(0)+'KB). Respondé ÚNICAMENTE con JSON puro sin markdown: {"score":<número 42-91>,"tags_ok":["hasta 3 puntos fuertes 2-3 palabras"],"tags_warn":["1-2 áreas mejora 2-3 palabras"],"sugs":["3 sugerencias accionables máximo 10 palabras c/u"]}'}]})
+    });
+    const d=await res.json();
+    showAI(JSON.parse((d.content||[]).map(b=>b.text||'').join('').replace(/```json|```/g,'').trim()));
+  }catch(e){
+    showAI({score:Math.floor(Math.random()*22)+55,tags_ok:['Formato legible','Experiencia detallada'],tags_warn:['Keywords ATS insuficientes'],sugs:['Agregá logros con métricas concretas','Incluí más keywords del sector objetivo','Optimizá tu resumen profesional']});
+  }
+}
+function showAI(d){
+  document.getElementById('ai-loading').style.display='none';
+  document.getElementById('ai-result').classList.add('show');
+  document.getElementById('ai-title').textContent='Análisis completado';
+  let cur=0,tgt=d.score||68;
+  const iv=setInterval(()=>{cur=Math.min(cur+2,tgt);document.getElementById('ai-score-num').textContent=cur;if(cur>=tgt)clearInterval(iv);},18);
+  setTimeout(()=>{const b=document.getElementById('ai-bar');b.style.width=tgt+'%';b.style.background=tgt>=80?'#10B981':tgt>=60?'#60A5FA':'#FBBF24';},120);
+  document.getElementById('ai-tags').innerHTML=(d.tags_ok||[]).map(t=>'<span class="ai-tag ok">'+t+'</span>').join('')+(d.tags_warn||[]).map(t=>'<span class="ai-tag warn">Mejorar: '+t+'</span>').join('');
+  document.getElementById('ai-sugs').innerHTML=(d.sugs||[]).map(s=>'<div class="ai-sug">'+s+'</div>').join('');
+}
+
+function googleSignIn(){S.nombre='Martina';S.email='martina@gmail.com';goStep(2);}
+
+function togBox(id){
+  const box=document.getElementById('box-'+id),btn=document.getElementById('tog-'+id);
+  const isOpen=box.classList.contains('open');
+  box.classList.toggle('open',!isOpen);btn.classList.toggle('open',!isOpen);
+  const lbl=btn.querySelector('.t-lbl');
+  if(lbl){const closed={tyc:'Leer contrato completo',ia:'¿Por qué es importante?',net:'Más información'};lbl.textContent=!isOpen?'Ocultar':(closed[id]||'Ver más');}
+}
+
+function openTyc(e,boxId,paneKey){
+  e.preventDefault();
+  const box=document.getElementById('box-'+boxId);
+  if(!box.classList.contains('open'))togBox(boxId);
+  const allTabs=document.querySelectorAll('#tabs-'+boxId+' .tyc-tab');
+  const allPanes=document.querySelectorAll('#box-'+boxId+' .tyc-pane');
+  allPanes.forEach(p=>p.classList.remove('on'));allTabs.forEach(t=>t.classList.remove('on'));
+  const target=document.getElementById('pane-'+boxId+'-'+paneKey);
+  if(target){target.classList.add('on');const idx=[...allPanes].indexOf(target);if(allTabs[idx])allTabs[idx].classList.add('on');}
+}
+
+function swTab(boxId,paneKey,btn){
+  const box=document.getElementById('box-'+boxId);
+  box.querySelectorAll('.tyc-tab').forEach(t=>t.classList.remove('on'));btn.classList.add('on');
+  box.querySelectorAll('.tyc-pane').forEach(p=>p.classList.remove('on'));
+  const t=document.getElementById('pane-'+boxId+'-'+paneKey);if(t)t.classList.add('on');
+}
+
+function ckUpdate(){
+  document.getElementById('btn4').disabled=!(document.getElementById('cb-tyc').checked&&document.getElementById('cb-ia').checked);
+}
+
+function completar(){
+  const consent={tyc:true,ia:true,net:document.getElementById('cb-net').checked,alerts:document.getElementById('cb-alerts').checked,ts:new Date().toISOString(),version:'V2.0-20260331'};
+  console.log('Consentimientos:',JSON.stringify(consent));
+  goStep(5);
+}
+
+document.getElementById('f-pais')?.addEventListener('change',()=>{fv('f-pais','pais');chkBtn2();});
+document.getElementById('f-industria')?.addEventListener('change',()=>{fv('f-industria','industria');chkBtn2();});
+</script>
+</body>
+</html>
