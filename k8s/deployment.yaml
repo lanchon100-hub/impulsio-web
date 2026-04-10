@@ -1,0 +1,19 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: impulsio-web
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: impulsio-web
+  template:
+    metadata:
+      labels:
+        app: impulsio-web
+    spec:
+      containers:
+      - name: web
+        image: TU_USUARIO/impulsio-web:1.0
+        ports:
+        - containerPort: 80
