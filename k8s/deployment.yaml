@@ -15,6 +15,6 @@ spec:
     spec:
       containers:
       - name: web
-        image: lanchon100-hub/impulsio-web:1.0
+        image: dodge100/impulsio-web:1.0
         ports:
         - containerPort: 80
