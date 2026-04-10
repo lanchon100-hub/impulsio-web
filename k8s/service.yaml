@@ -1,0 +1,11 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: impulsio-web
+spec:
+  selector:
+    app: impulsio-web
+  ports:
+    - port: 80
+      targetPort: 80
+  type: LoadBalancer
