@@ -23,4 +23,4 @@ jobs:
         with:
           context: .
           push: true
-          tags: lanchon100-hub/impulsio-web:1.0
+          tags: dodge100/impulsio-web:1.0
