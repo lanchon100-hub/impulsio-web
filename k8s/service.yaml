@@ -2,6 +2,7 @@ apiVersion: v1
 kind: Service
 metadata:
   name: impulsio-web
+  namespace: default
 spec:
   selector:
     app: impulsio-web
